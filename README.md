@@ -4,10 +4,6 @@ description: Easy JavaScript based charts in any web application
 
 # Overview
 
-{% hint style="info" %}
-ChartSQL.js is currently in development. Documentation is for feedback purposes.
-{% endhint %}
-
 ChartSQL.js is an open source library to chart SQL (or any table like data) seamlessly within any web application.
 
 We have designed ChartSQL.js to be the easiest to use JavaScript charting library available.
@@ -23,8 +19,6 @@ We have designed ChartSQL.js to be the easiest to use JavaScript charting librar
 
 The following is all that is required to create a basic column chart
 
-{% tabs %}
-{% tab title="Code" %}
 ```javascript
 // Sample data, typically retrieved from an executed SQL query or API call
 var data = [
@@ -43,12 +37,8 @@ chartsql.createChart({
   data: data
 });
 ```
-{% endtab %}
 
-{% tab title="Chart" %}
 <figure><img src="../../../.gitbook/assets/image (5).png" alt=""><figcaption><p>An example auto generating column chart</p></figcaption></figure>
-{% endtab %}
-{% endtabs %}
 
 ## Quick Start
 
@@ -119,12 +109,10 @@ When there is one string and one numeric field in the data
 {category: 'shoes', total_sales: 5000}
 ```
 
-{% tabs %}
-{% tab title="Chart" %}
 <figure><img src="../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Code" %}
+
+
 ```javascript
 // Sample data, typically retrieved from an executed SQL query or API call
 var data = [
@@ -143,8 +131,7 @@ chartsql.createChart({
   data: data
 });
 ```
-{% endtab %}
-{% endtabs %}
+
 
 ### Auto Grouped Column Chart
 
@@ -154,12 +141,9 @@ When there is one string and 2 or more numeric fields the numeric fields will be
 {category: 'shoes', total_sales: 5000, total_profit: 2000}
 ```
 
-{% tabs %}
-{% tab title="Chart" %}
-<figure><img src="../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Code" %}
+<figure><img src="../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
 
 
 ```javascript
@@ -180,8 +164,7 @@ chartsql.createChart({
 	}
 });
 ```
-{% endtab %}
-{% endtabs %}
+
 
 ### Auto Date Line Chart
 
@@ -191,12 +174,11 @@ When there is a date field and a numeric field
 {month: '2022-01-01', total_sales: 5000}
 ```
 
-{% tabs %}
-{% tab title="Chart" %}
-<figure><img src="../../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
 
-{% tab title="Code" %}
+<figure><img src="../../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+
+
 ```javascript
 // Sample data, typically retrieved from an executed SQL query
 var data = [
@@ -220,8 +202,7 @@ chartsql.createChart({
 	data: data
 });
 ```
-{% endtab %}
-{% endtabs %}
+
 
 ## Customizing Charts
 
@@ -233,8 +214,7 @@ Directives allow you to fully control the type of chart and the selection of the
 
 `createChart()` takes a 'directives' object which contains the directives for controlling rendering of the chart.
 
-{% tabs %}
-{% tab title="Code" %}
+
 ```javascript
 // Sample data, typically retrieved from an executed SQL query
 var data = [
@@ -253,12 +233,9 @@ chartsql.createChart({
 	}
 });
 ```
-{% endtab %}
 
-{% tab title="Chart" %}
 <figure><img src="../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+
 
 ### Common Directives
 
@@ -269,9 +246,6 @@ chartsql.createChart({
 
 You can [See All Directives](../../../reference/directives/) for all the ways in which you can customize your charts.
 
-{% hint style="info" %}
-ChartSQL.js is currently in development and does not support all directives. See the [Supported Directives](overview.md#directives) section for current support
-{% endhint %}
 
 ## Working with Data
 
