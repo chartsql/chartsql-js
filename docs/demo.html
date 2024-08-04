@@ -1,0 +1,395 @@
+
+
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ChartSQL.js Examples</title>
+	<script src="../dist/js/chartsql.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/dracula.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/edit/closebrackets.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/comment/comment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/fold/foldcode.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/fold/foldgutter.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/fold/brace-fold.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/fold/comment-fold.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/fold/foldgutter.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<style>
+		.CodeMirror {
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-2">
+				<h1>Examples</h1>
+				<ul>
+					
+					<li><a href="#auto-column-heading">Auto Column</a></li>
+					
+					<li><a href="#auto-grouped-column-heading">Auto Grouped Column</a></li>
+					
+					<li><a href="#auto-dateline-heading">Auto Date Line</a></li>
+					
+					<li><a href="#basic-bar-heading">Basic Bar</a></li>
+					
+					<li><a href="#data-array-of-objects-heading">Data Array of Objects</a></li>
+					
+					<li><a href="#data-array-of-arrays-heading">Data Array of Arrays</a></li>
+					
+					<li><a href="#data-table-object-heading">Data Table Object</a></li>
+					
+					<li><a href="#data-data-class-heading">Data Class</a></li>
+					
+					<li><a href="#basic-sql-heading">SQL Script Directives</a></li>
+					
+				</ul>
+			</div>
+			<div class="col-10">
+				<h1 id="top" class="mb-3">ChartSQL.js Examples</h1>
+
+				
+				<h2 id="auto-column-heading">Auto Column <small><a href="#top">top</a></small></h2>
+				
+				<div class="row mb-3 g-0" style="height:600px;">
+					<div class="col position-relative">
+						<textarea id="auto-column-code" class="codeEditor" data-name="auto-column"></textarea>
+						<div style="position:absolute; top:0; right:0; z-index:1;">
+							<button onclick="runScript('auto-column-code')">Run</button>
+							<button onclick="copyToClipboard('auto-column-code')">copy</button>
+						</div>
+					</div>
+					<div class="col" class="">
+						<div id="auto-column" class="chartRender" data-name="auto-column" style="width:100%; height:100%; background-color:green;"></div>
+					</div>
+				</div>
+				<script id="auto-column-script" class="chartScript" data-name="auto-column" type="module">// Sample data, typically retrieved from an executed SQL query
+var data = [
+	{category: 'shoes', total_sales: 5000},
+	{category: 'pants', total_sales: 10000},
+	{category: 'shirts', total_sales: 8000},
+	{category: 'socks', total_sales: 4000}
+]
+
+// Render a chart at the target element with the data provided
+chartsql.createChart({
+	target: 'auto-column',
+	data: data,
+	directives: {}
+});</script>
+				
+				<h2 id="auto-grouped-column-heading">Auto Grouped Column <small><a href="#top">top</a></small></h2>
+				
+				<div class="row mb-3 g-0" style="height:600px;">
+					<div class="col position-relative">
+						<textarea id="auto-grouped-column-code" class="codeEditor" data-name="auto-grouped-column"></textarea>
+						<div style="position:absolute; top:0; right:0; z-index:1;">
+							<button onclick="runScript('auto-grouped-column-code')">Run</button>
+							<button onclick="copyToClipboard('auto-grouped-column-code')">copy</button>
+						</div>
+					</div>
+					<div class="col" class="">
+						<div id="auto-grouped-column" class="chartRender" data-name="auto-grouped-column" style="width:100%; height:100%; background-color:green;"></div>
+					</div>
+				</div>
+				<script id="auto-grouped-column-script" class="chartScript" data-name="auto-grouped-column" type="module">// Sample data, typically retrieved from an executed SQL query
+var data = [
+	{category: 'shoes', total_sales: 5000, total_profit: 2000},
+	{category: 'pants', total_sales: 10000, total_profit: 4000},
+	{category: 'shirts', total_sales: 8000, total_profit: 3000},
+	{category: 'socks', total_sales: 4000, total_profit: 1000}
+]
+
+// Render a chart at the target element with the data provided
+chartsql.createChart({
+	target: 'auto-grouped-column',
+	data: data
+});</script>
+				
+				<h2 id="auto-dateline-heading">Auto Date Line <small><a href="#top">top</a></small></h2>
+				
+				<div class="row mb-3 g-0" style="height:600px;">
+					<div class="col position-relative">
+						<textarea id="auto-dateline-code" class="codeEditor" data-name="auto-dateline"></textarea>
+						<div style="position:absolute; top:0; right:0; z-index:1;">
+							<button onclick="runScript('auto-dateline-code')">Run</button>
+							<button onclick="copyToClipboard('auto-dateline-code')">copy</button>
+						</div>
+					</div>
+					<div class="col" class="">
+						<div id="auto-dateline" class="chartRender" data-name="auto-dateline" style="width:100%; height:100%; background-color:green;"></div>
+					</div>
+				</div>
+				<script id="auto-dateline-script" class="chartScript" data-name="auto-dateline" type="module">// Sample data, typically retrieved from an executed SQL query
+var data = [
+	{month: '2022-01-01', total_sales: 5000},
+	{month: '2022-02-01', total_sales: 7000},
+	{month: '2022-03-01', total_sales: 4900},
+	{month: '2022-04-01', total_sales: 7528},
+	{month: '2022-05-01', total_sales: 7762},
+	{month: '2022-06-01', total_sales: 8000},
+	{month: '2022-07-01', total_sales: 9500},
+	{month: '2022-08-01', total_sales: 8250},
+	{month: '2022-09-01', total_sales: 9000},
+	{month: '2022-10-01', total_sales: 8500},
+	{month: '2022-11-01', total_sales: 9500},
+	{month: '2022-12-01', total_sales: 10000}
+]
+
+// Render a chart at the target element with the data provided
+chartsql.createChart({
+	target: 'auto-dateline',
+	data: data
+});</script>
+				
+				<h2 id="basic-bar-heading">Basic Bar <small><a href="#top">top</a></small></h2>
+				
+				<div class="row mb-3 g-0" style="height:600px;">
+					<div class="col position-relative">
+						<textarea id="basic-bar-code" class="codeEditor" data-name="basic-bar"></textarea>
+						<div style="position:absolute; top:0; right:0; z-index:1;">
+							<button onclick="runScript('basic-bar-code')">Run</button>
+							<button onclick="copyToClipboard('basic-bar-code')">copy</button>
+						</div>
+					</div>
+					<div class="col" class="">
+						<div id="basic-bar" class="chartRender" data-name="basic-bar" style="width:100%; height:100%; background-color:green;"></div>
+					</div>
+				</div>
+				<script id="basic-bar-script" class="chartScript" data-name="basic-bar" type="module">// Sample data, typically retrieved from an executed SQL query
+var data = [
+	{category: 'shoes', total_sales: 5000},
+	{category: 'pants', total_sales: 10000},
+	{category: 'shirts', total_sales: 8000},
+	{category: 'socks', total_sales: 4000}
+]
+
+// Render a chart at the target element with the data provided
+chartsql.createChart({
+	target: 'basic-bar',
+	data: data,
+	directives: {
+		chart: 'bar'
+	}
+});</script>
+				
+				<h2 id="data-array-of-objects-heading">Data Array of Objects <small><a href="#top">top</a></small></h2>
+				
+				<div class="row mb-3 g-0" style="height:600px;">
+					<div class="col position-relative">
+						<textarea id="data-array-of-objects-code" class="codeEditor" data-name="data-array-of-objects"></textarea>
+						<div style="position:absolute; top:0; right:0; z-index:1;">
+							<button onclick="runScript('data-array-of-objects-code')">Run</button>
+							<button onclick="copyToClipboard('data-array-of-objects-code')">copy</button>
+						</div>
+					</div>
+					<div class="col" class="">
+						<div id="data-array-of-objects" class="chartRender" data-name="data-array-of-objects" style="width:100%; height:100%; background-color:green;"></div>
+					</div>
+				</div>
+				<script id="data-array-of-objects-script" class="chartScript" data-name="data-array-of-objects" type="module">// Sample data, typically retrieved from an executed SQL query. It can
+// be an array of objects
+var data = [
+	{ category: 'shoes', total_sales: 5000 },
+	{ category: 'pants', total_sales: 10000 },
+	{ category: 'shirts', total_sales: 8000 },
+	{ category: 'socks', total_sales: 4000 }
+];
+
+// Render a chart at the target element with the data provided
+chartsql.createChart({
+	target: 'data-array-of-objects',
+	data: data
+});</script>
+				
+				<h2 id="data-array-of-arrays-heading">Data Array of Arrays <small><a href="#top">top</a></small></h2>
+				
+				<div class="row mb-3 g-0" style="height:600px;">
+					<div class="col position-relative">
+						<textarea id="data-array-of-arrays-code" class="codeEditor" data-name="data-array-of-arrays"></textarea>
+						<div style="position:absolute; top:0; right:0; z-index:1;">
+							<button onclick="runScript('data-array-of-arrays-code')">Run</button>
+							<button onclick="copyToClipboard('data-array-of-arrays-code')">copy</button>
+						</div>
+					</div>
+					<div class="col" class="">
+						<div id="data-array-of-arrays" class="chartRender" data-name="data-array-of-arrays" style="width:100%; height:100%; background-color:green;"></div>
+					</div>
+				</div>
+				<script id="data-array-of-arrays-script" class="chartScript" data-name="data-array-of-arrays" type="module">// Sample data, typically retrieved from an executed SQL query. It can
+// be an array of arrays with the first array containing the column names
+var data = [
+	['category', 'total_sales'],
+	['shoes', 5000],
+	['pants', 10000],
+	['shirts', 8000],
+	['socks', 4000]
+];
+
+// Render a chart at the target element with the data provided
+chartsql.createChart({
+	target: 'data-array-of-arrays',
+	data: data
+});</script>
+				
+				<h2 id="data-table-object-heading">Data Table Object <small><a href="#top">top</a></small></h2>
+				
+				<div class="row mb-3 g-0" style="height:600px;">
+					<div class="col position-relative">
+						<textarea id="data-table-object-code" class="codeEditor" data-name="data-table-object"></textarea>
+						<div style="position:absolute; top:0; right:0; z-index:1;">
+							<button onclick="runScript('data-table-object-code')">Run</button>
+							<button onclick="copyToClipboard('data-table-object-code')">copy</button>
+						</div>
+					</div>
+					<div class="col" class="">
+						<div id="data-table-object" class="chartRender" data-name="data-table-object" style="width:100%; height:100%; background-color:green;"></div>
+					</div>
+				</div>
+				<script id="data-table-object-script" class="chartScript" data-name="data-table-object" type="module">// Sample data, typically retrieved from an executed SQL query. It can
+// be an object containing an array of the column names and an array of
+// arrays with the data
+var data = {
+	columns: ['category', 'total_sales'],
+	rows: [
+		['shoes', 5000],
+		['pants', 10000],
+		['shirts', 8000],
+		['socks', 4000]
+	]
+};
+
+// Render a chart at the target element with the data provided
+var chart = chartsql.createChart({
+	target: 'data-table-object',
+	data: data
+});</script>
+				
+				<h2 id="data-data-class-heading">Data Class <small><a href="#top">top</a></small></h2>
+				
+				<div class="row mb-3 g-0" style="height:600px;">
+					<div class="col position-relative">
+						<textarea id="data-data-class-code" class="codeEditor" data-name="data-data-class"></textarea>
+						<div style="position:absolute; top:0; right:0; z-index:1;">
+							<button onclick="runScript('data-data-class-code')">Run</button>
+							<button onclick="copyToClipboard('data-data-class-code')">copy</button>
+						</div>
+					</div>
+					<div class="col" class="">
+						<div id="data-data-class" class="chartRender" data-name="data-data-class" style="width:100%; height:100%; background-color:green;"></div>
+					</div>
+				</div>
+				<script id="data-data-class-script" class="chartScript" data-name="data-data-class" type="module">// Sample data, typically retrieved from an executed SQL query. You can create
+// and instance of the ChartSQLjs.Data class and manually pass the data to it
+var data = new ChartSQLjs.Data({
+	columns: ['category', 'total_sales'],
+	rows: [
+		['shoes', 5000],
+		['pants', 10000],
+		['shirts', 8000],
+		['socks', 4000]
+	]
+});
+
+// Render a chart at the target element with the data provided
+chartsql.createChart({
+	target: 'data-data-class',
+	data: data
+});</script>
+				
+				<h2 id="basic-sql-heading">SQL Script Directives <small><a href="#top">top</a></small></h2>
+				
+				<div class="row mb-3 g-0" style="height:600px;">
+					<div class="col position-relative">
+						<textarea id="basic-sql-code" class="codeEditor" data-name="basic-sql"></textarea>
+						<div style="position:absolute; top:0; right:0; z-index:1;">
+							<button onclick="runScript('basic-sql-code')">Run</button>
+							<button onclick="copyToClipboard('basic-sql-code')">copy</button>
+						</div>
+					</div>
+					<div class="col" class="">
+						<div id="basic-sql" class="chartRender" data-name="basic-sql" style="width:100%; height:100%; background-color:green;"></div>
+					</div>
+				</div>
+				<script id="basic-sql-script" class="chartScript" data-name="basic-sql" type="module">var sql = `
+	-- @chart: bar
+	SELECT category, total_sales
+	FROM sales
+`;
+
+// Sample data as if retrieved from an executed SQL query
+var data = [
+	{category: 'shoes', total_sales: 5000},
+	{category: 'pants', total_sales: 10000},
+	{category: 'shirts', total_sales: 8000},
+	{category: 'socks', total_sales: 4000}
+]
+
+// Render a chart at the target element with the data provided
+chartsql.createChart({
+	target: 'basic-sql',
+	data: data,
+	directives: sql
+});</script>
+				
+			</div>
+		</div>
+	</div>
+	
+	<script>
+
+		//Grabs the code from the target element and evals it
+		var runScript = function(codeTarget){
+			var code = document.getElementById(codeTarget).value;
+			console.log(code);
+			eval(code);
+		}
+
+		var copyToClipboard = function(codeTarget){
+			var code = document.getElementById(codeTarget).value;
+			navigator.clipboard.writeText(code);
+		}
+
+		//For each .codeEditor element, create a CodeMirror instance
+		var codeEditors = document.getElementsByClassName('codeEditor');
+		for(var i = 0; i < codeEditors.length; i++){
+
+			//Get the data-name
+			let dataName = codeEditors[i].getAttribute('data-name');
+
+			//Get the code from .chartScript element associated with the same name
+			let code = document.querySelector('.chartScript[data-name="' + dataName + '"]').innerHTML;
+
+			codeEditors[i].value = code;
+
+			let editor = CodeMirror.fromTextArea(codeEditors[i], {
+				lineNumbers: true,
+				mode: "javascript",
+				theme: "dracula",
+				autoCloseBrackets: true,
+				matchBrackets: true,
+				gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+				foldGutter: true,
+				extraKeys: {
+					"Ctrl-/": "toggleComment",
+					"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); },
+					"Ctrl-S": function(cm){
+						runScript(cm.getTextArea().id);
+					}
+				}
+			});
+
+			editor.on("change", function() {
+				editor.save(); // Updates the <textarea> content with the new code
+			});
+		}
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

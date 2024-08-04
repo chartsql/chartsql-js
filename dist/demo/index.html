@@ -1,0 +1,277 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+
+		<script src="../js/chartsql.js"></script>
+		<script>
+			//Grabs the code from the target element and evals it
+			var runScript = function(codeTarget){
+				var code = document.getElementById(codeTarget).value;
+				console.log(code);
+				eval(code);
+			}
+
+			var copyToClipboard = function(codeTarget){
+				var code = document.getElementById(codeTarget).value;
+				navigator.clipboard.writeText(code);
+			}
+		</script>
+
+
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/dracula.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/edit/closebrackets.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/comment/comment.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/fold/foldcode.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/fold/foldgutter.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/fold/brace-fold.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/fold/comment-fold.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/fold/foldgutter.min.css">
+
+		<style>
+			.CodeMirror {
+				height: 100%;
+			}
+		</style>
+
+	</head>
+	<body>
+
+		<div style="width:100%; height:100%; display:flex; flex-flow:row">
+			<div style="width:10%; height:100%">
+				<h1 style="margin-top:0px;">Contents</h1>
+				<h2>Auto Charts</h2>
+				<a href="#auto-column">Auto Column</a><br />
+				<a href="#auto-grouped-column">Auto Grouped Column</a><br />
+				<h2>Basic Charts</h2>
+				<a href="#bar">Bar Chart</a><br />
+				<h2>Script Tests</h2>
+				<a href="#sql-script">SQL Script</a><br />
+			</div>
+			<div style="width:90%; height:100%; overflow-y:scroll;">
+				<h1 id="top" style="margin-top:0px;">ChartSQL Demo</h1>
+
+				<h1>Auto Charts <a href="#top">top</a></h1>
+				<!-- AUTO COLUMN -->
+				<h2 id="auto-column">Auto Column <a href="#top">top</a></h2>
+
+				<div style="display:flex; flex-flow:row; width:1600px;">
+					<div style="width:800px; height:600px; display:flex; flex-flow:column;">
+						<div style="flex-grow:1; position:relative; display:flex; flex-flow:column; height:100%;">
+							<textarea id="auto-column-chart-code" class="codeEditor" data-name="auto-column-chart"></textarea>
+							<div style="position:absolute; top:0; right:0; z-index:1;">
+								<button onclick="runScript('auto-column-chart-code')">Run</button>
+								<button onclick="copyToClipboard('auto-column-chart-code')">copy</button>
+							</div>
+						</div>
+					</div>
+					<div id="auto-column-chart" class="chartRender" data-name="auto-column-chart" style="width:800px; height:600px; display:flex;"></div>
+				</div>
+
+				<script id="auto-column-script" class="chartScript" data-name="auto-column-chart">
+					var chartsql = new ChartSQLjs.ChartSQL();
+
+					// Sample data, typically retrieved from an executed SQL query
+					var data = {
+						columns: ['category', 'total_sales'],
+						rows: [
+							['shoes', 5000],
+							['pants', 10000],
+							['shirts', 8000],
+							['socks', 4000]
+						]
+					}
+
+					// Renders the data using the directives supplied
+					// Returns an instance of the ChartSQL chart object that
+					// you can use to interact with the rendered chart instance
+					var chart = chartsql.createChart({
+						target: 'auto-column-chart',
+						data: data,
+						directives: {}
+					});
+				</script>
+
+				<!-- AUTO GROUPED COLUMN -->
+				<h2 id="auto-grouped-column">Auto Grouped Column <a href="#top">top</a></h2>
+				<div style="display:flex; flex-flow:row; width:1600px;">
+					<div style="width:800px; height:600px; display:flex; flex-flow:column;">
+						<div style="flex-grow:1; position:relative; display:flex; flex-flow:column; height:100%;">
+							<textarea id="auto-grouped-column-chart-code" class="codeEditor" data-name="auto-grouped-column-chart"></textarea>
+							<div style="position:absolute; top:0; right:0; z-index:1;">
+								<button onclick="runScript('auto-grouped-column-chart-code')">Run</button>
+								<button onclick="copyToClipboard('auto-grouped-column-chart-code')">copy</button>
+							</div>
+						</div>
+					</div>
+					<div id="auto-grouped-column-chart" class="chartRender" data-name="auto-grouped-column-chart" style="width:800px; height:600px; display:flex;"></div>
+				</div>
+
+				<script id="auto-grouped-column-script" class="chartScript" data-name="auto-grouped-column-chart">
+
+					// Sample data, typically retrieved from an executed SQL query
+					var data = {
+						columns: ['category', 'total_sales', 'total_profit'],
+						rows: [
+							['shoes', 5000, 2000],
+							['pants', 10000, 4000],
+							['shirts', 8000, 3000],
+							['socks', 4000, 1000]
+						]
+					}
+
+					// Renders the data using the directives supplied
+					// Returns an instance of the ChartSQL chart object that
+					// you can use to interact with the rendered chart instance
+					var chart = chartsql.createChart({
+						target: 'auto-grouped-column-chart',
+						data: data,
+						directives: {
+						}
+					});
+
+				</script>
+
+				<h1>Basic Charts <a href="#top">top</a></h1>
+				<h2 id="bar">Bar <a href="#top">top</a></h2>
+				<div style="display:flex; flex-flow:row; width:1600px;">
+					<div style="width:800px; height:600px; display:flex; flex-flow:column;">
+						<div style="flex-grow:1; position:relative; display:flex; flex-flow:column; height:100%;">
+							<textarea id="bar-chart-code" class="codeEditor" data-name="bar-chart"></textarea>
+							<div style="position:absolute; top:0; right:0; z-index:1;">
+								<button onclick="runScript('bar-chart-code')">Run</button>
+								<button onclick="copyToClipboard('bar-chart-code')">copy</button>
+							</div>
+						</div>
+					</div>
+					<div id="bar-chart" class="chartRender" data-name="bar-chart" style="width:800px; height:600px; display:flex;"></div>
+				</div>
+
+				<script id="bar-chart-script" class="chartScript" data-name="bar-chart">
+
+					// Sample data, typically retrieved from an executed SQL query
+					var data = {
+						columns: ['category', 'total_sales'],
+						rows: [
+							['shoes', 5000],
+							['pants', 10000],
+							['shirts', 8000],
+							['socks', 4000]
+						]
+					}
+
+					// Renders the data using the directives supplied
+					// Returns an instance of the ChartSQL chart object that
+					// you can use to interact with the rendered chart instance
+					var chart = chartsql.createChart({
+						target: 'bar-chart',
+						data: data,
+						directives: {
+							chart: 'bar'
+						}
+					});
+				</script>
+
+				<h1>Script Tests <a href="#top">top</a></h1>
+				<h2 id="sql-script">SQL Script <a href="#top">top</a></h2>
+				<div style="display:flex; flex-flow:row; width:1600px;">
+					<div style="width:800px; height:600px; display:flex; flex-flow:column;">
+						<div style="flex-grow:1; position:relative; display:flex; flex-flow:column; height:100%;">
+							<textarea id="sql-script-bar-code" class="codeEditor" data-name="sql-script-bar"></textarea>
+							<div style="position:absolute; top:0; right:0; z-index:1;">
+								<button onclick="runScript('sql-script-bar-code')">Run</button>
+								<button onclick="copyToClipboard('sql-script-bar-code')">copy</button>
+							</div>
+						</div>
+					</div>
+					<div id="sql-script-bar" class="chartRender" data-name="sql-script-bar" style="width:800px; height:600px; display:flex;"></div>
+				</div>
+
+
+				<script id="sql-script-bar-script" class="chartScript" data-name="sql-script-bar">
+					let sql = `
+						-- @chart: bar
+						SELECT
+							category,
+							SUM(total_sales) AS total_sales
+						FROM
+							sales
+						GROUP BY
+							category
+					`;
+
+					// Sample data, typically retrieved from an executed SQL query
+					var data = {
+						columns: ['category', 'total_sales'],
+						rows: [
+							['shoes', 5000],
+							['pants', 10000],
+							['shirts', 8000],
+							['socks', 4000]
+						]
+					}
+
+					// Renders the data using the directives supplied
+					// Returns an instance of the ChartSQL chart object that
+					// you can use to interact with the rendered chart instance
+					var chart = chartsql.createChart({
+						target: 'sql-script-bar-chart',
+						data: data,
+						directives: sql
+					});
+				</script>
+
+				<script>
+					//For each .codeEditor element, create a CodeMirror instance
+					var codeEditors = document.getElementsByClassName('codeEditor');
+					for(var i = 0; i < codeEditors.length; i++){
+
+						//Get the data-name
+						let dataName = codeEditors[i].getAttribute('data-name');
+
+						//Get the code from .chartScript element associated with the same name
+						let code = document.querySelector('.chartScript[data-name="' + dataName + '"]').innerHTML;
+						// var code = document.getElementById('auto-column-script').innerHTML;
+						//Strip the first line
+						code = code.replace(/.*\n/, '');
+						//Strip the 3 leading tabs
+						code = code.replace(/\t{5}/g, '');
+						//Strip the last line
+						code = code.replace(/\n.*$/, '');
+
+						codeEditors[i].value = code;
+
+						let editor = CodeMirror.fromTextArea(codeEditors[i], {
+							lineNumbers: true,
+							mode: "javascript",
+							theme: "dracula",
+							autoCloseBrackets: true,
+							matchBrackets: true,
+							gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+							foldGutter: true,
+							extraKeys: {
+								"Ctrl-/": "toggleComment",
+								"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); },
+								"Ctrl-S": function(cm){
+									runScript(cm.getTextArea().id);
+								}
+							}
+						});
+
+						editor.on("change", function() {
+							editor.save(); // Updates the <textarea> content with the new code
+						});
+					}
+				</script>
+			</div>
+		</div>
+
+
+
+	</body>
+</html>

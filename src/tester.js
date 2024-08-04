@@ -1,0 +1,4 @@
+/**
+ * @namespace Tester
+ */
+var Tester = {};

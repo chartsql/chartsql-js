@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Data.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Data.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Represents the data that the user wants to chart. We provide this Data class
+ * to so that we can encapsulate the data and provide a consistent interface to
+ * the data.
+ * @memberof ChartSQLjs
+ */
+ChartSQLjs.Data = class Data {
+
+	/**
+	 * Constructor for the Data class
+	 * @param {Array&lt;string>} columns - The columns in the data
+	 * @param {*} rows - The rows in the data
+	 * @throws {Error} - If columns is not an array
+	 * @throws {Error} - If rows is not an array
+	 * @throws {Error} - If datatypes is not an array
+	 */
+	constructor(
+		columns,
+		rows
+	) {
+
+		//If columns is not an array, throw an error
+		if(!Array.isArray(columns)){
+			throw new Error('Invalid columns passed to Data constructor. Must be an array');
+		}
+		this.columns = columns;
+
+		//If rows is not an array, then error
+		if(!Array.isArray(rows)){
+			throw new Error('Invalid rows passed to Data constructor. Must be an array');
+		}
+
+		this.rows = rows;
+
+	}
+
+	getFields(){
+
+		// If this.fields is yet undefined, then create it
+		// This is so that we only create and process the fields once
+		if(!this.fields){
+
+			 /**
+			 * An array to store the fields.
+			 * @type {ChartSQLjs.Field[]}
+			 */
+			this.fields = [];
+
+			// //Iterate over the keys in the data object
+			var columnIndex = 0;
+			for(var key in this.columns){
+
+				// if our rows has a row, get the first row of the data
+				var row = this.rows[0];
+
+				// get the value of the matching column
+				var value = row[columnIndex];
+
+				// we need to detct if the datatype of the value is a string, numeric, date or datetime
+				var datatype = 'string';
+
+				if (typeof value === 'number') {
+					datatype = 'numeric';
+				} else if (typeof value === 'string') {
+					if (Date.parse(value)) {
+						datatype = 'date';
+					}
+				} else {
+					throw new Error('Error: Invalid datatype in data. Only string, numeric, and date datatypes are supposed for chart series');
+				}
+
+				//Create a new field object
+				var field = new ChartSQLjs.Field(
+					datatype,
+					this.columns[key],
+					this
+				);
+
+				columnIndex++;
+
+				//Add the field to the fields array
+				this.fields.push(field);
+			}
+		}
+
+		return this.fields;
+	}
+
+	/**
+	 * Returns the type of chart that should be automatically generated based on the data
+	 * @returns {ChartSQLjs.AutoChartType}
+	 */
+	detectAutoChartType(){
+
+		/**
+		 * @type {Record&lt;string, any>}
+		 */
+		var autoChartTypes = {
+			"column":{
+				"string":{
+					comparison: "==",
+					digit:1
+				},
+				"numeric":{
+					comparison: "==",
+					digit:1
+				},
+			},
+			"grouped-column":{
+				"string":{
+					comparison: "==",
+					digit:1
+				},
+				"numeric":{
+					comparison: ">=",
+					digit:2
+				},
+			},
+			"dateline":{
+				"date":{
+					comparison: "==",
+					digit:1
+				},
+				"numeric":{
+					comparison: ">=",
+					digit:1
+				},
+			},
+			"timeline":{
+				"datetime":{
+					comparison: "==",
+					digit:1
+				},
+				"numeric":{
+					comparison: ">=",
+					digit:1
+				},
+			},
+			"scatter":{
+				"numeric":{
+					comparison: "==",
+					digit:2
+				},
+			},
+			"bubble":{
+				"numeric":{
+					comparison: "==",
+					digit:3
+				},
+			},
+			"heatmap": {
+				"string":{
+					comparison: "==",
+					digit:2
+				},
+				"numeric":{
+					comparison: "==",
+					digit:1
+				},
+			},
+		}
+
+		var fields = this.getFields();
+
+		//Create a unique object of datatypes counting the distinct datatypes found in the fields, counting the occurances
+		/**
+		 * @type {Record&lt;string, number>}
+		 */
+		var datatypes = {};
+		for(var i = 0; i &lt; fields.length; i++){
+			var datatype = fields[i].datatype;
+			if(datatypes[datatype]){
+				datatypes[datatype]++;
+			} else {
+				datatypes[datatype] = 1;
+			}
+		}
+
+		// Loop through the autoChartTypes, checking if each type matches the datatype and count of the fields. Evaluating the comparison
+		for(var chartType in autoChartTypes){
+
+			var chartTypesMatch = true;
+
+			//First test if we have the datatypes for each of the types in the chartType
+			for(var datatype in autoChartTypes[chartType]){
+				if(!datatypes[datatype]){
+					chartTypesMatch = false;
+					break;
+				}
+			}
+
+			var typeCountMatch = false;
+			// Now if the chartTypesMatch eval() that we have the correct number of fields for the chartType
+			if(chartTypesMatch){
+
+				var typeCountMatch = true;
+
+				for(var datatype in autoChartTypes[chartType]){
+					// eval the comparison and digit
+					var result = this.compare(datatypes[datatype], autoChartTypes[chartType][datatype].comparison, autoChartTypes[chartType][datatype].digit);
+					if(!result){
+						typeCountMatch = false;
+						break;
+					}
+				}
+			}
+
+			// If we have a match, return the chartType
+			if(typeCountMatch){
+				return chartType;
+			}
+		}
+
+		//
+
+		return "indeterminate";
+	}
+
+	/**
+	 * Loops throug the datatypes and gets the first field that matches the type in the datatypes array
+	 * @param {Array&lt;string>} datatypes
+	 * @returns {ChartSQLjs.Field}
+	 * @throws {Error} - If no fields are found with the datatypes
+	 */
+	firstFieldOfTypes(datatypes){
+		var fields = this.getFields();
+
+		//Loop through the datatypes array
+		for(var i = 0; i &lt; datatypes.length; i++){
+			//Loop through the fields array
+			for(var j = 0; j &lt; fields.length; j++){
+				//If the datatype of the field matches the datatype in the datatypes array
+				if(fields[j].datatype == datatypes[i]){
+					return fields[j];
+				}
+			}
+		}
+
+		throw new Error('No fields found with the datatypes: ' + datatypes.join(', '));
+	}
+
+	/**
+	 * Gets an array of fields matching the type
+	 * @param {string} datatype
+	 * @returns {Array&lt;ChartSQLjs.Field>}
+	 */
+	allFieldsOfType(datatype){
+		var fields = this.getFields();
+		var fieldsOfType = [];
+		for(var i = 0; i &lt; fields.length; i++){
+			if(fields[i].datatype == datatype){
+				fieldsOfType.push(fields[i]);
+			}
+		}
+		return fieldsOfType;
+	}
+
+	/**
+	 * Gets the fields organize by type
+	 * @returns
+	 */
+	getFieldsByType(){
+
+		var fields = this.getFields();
+
+		/**
+		 * @type {Record&lt;string, ChartSQLjs.Field[]>}
+		 */
+		var datatypes = {};
+
+		for(var i = 0; i &lt; fields.length; i++){
+			var datatype = fields[i].datatype;
+			datatypes[datatype] = datatypes[datatype] || [];
+			datatypes[datatype].push(fields[i]);
+		}
+		return datatypes;
+	}
+
+	/**
+	 *
+	 * @param {number} value1
+	 * @param {string} comparison
+	 * @param {number} value2
+	 * @returns {boolean}
+	 */
+	compare(value1, comparison, value2) {
+		switch (comparison) {
+			case "==":
+				return value1 == value2;
+			case "!=":
+				return value1 != value2;
+			case ">":
+				return value1 > value2;
+			case ">=":
+				return value1 >= value2;
+			case "&lt;":
+				return value1 &lt; value2;
+			case "&lt;=":
+				return value1 &lt;= value2;
+			default:
+				throw new Error("Invalid comparison operator: " + comparison);
+		}
+	}
+
+	/**
+	 * Given the name returns the data for that column
+	 * @param {string} name
+	 * @returns {*}
+	 */
+	columnData(name){
+		var columnIndex = this.columns.indexOf(name);
+		var columnData = [];
+		for(var i = 0; i &lt; this.rows.length; i++){
+			columnData.push(this.rows[i][columnIndex]);
+		}
+		return columnData;
+	}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="ChartSQLjs.html">ChartSQLjs</a></li><li><a href="Tester.html">Tester</a></li></ul><h3>Classes</h3><ul><li><a href="ChartSQL.ChartSQLjs.Chart.html">ChartSQLjs.Chart</a></li><li><a href="ChartSQLjs.Data.html">Data</a></li><li><a href="ChartSQLjs.DirectiveName.html">DirectiveName</a></li><li><a href="ChartSQLjs.Directives.html">Directives</a></li><li><a href="ChartSQLjs.SQLScript.html">SQLScript</a></li><li><a href="ChartSQLjs.Validate.html">Validate</a></li><li><a href="ChartSQLjs.chartoptions.BarOption.html">BarOption</a></li><li><a href="ChartSQLjs.chartoptions.ColumnOption.html">ColumnOption</a></li><li><a href="ChartSQLjs-ChartSQLjs.ChartSQL.html">ChartSQL</a></li><li><a href="ChartSQLjs-ChartSQLjs.Field.html">Field</a></li><li><a href="GraalJsExpect.html">GraalJsExpect</a></li><li><a href="Tester.Test.html">Test</a></li><li><a href="Tester.Test2.html">Test2</a></li></ul><h3>Global</h3><ul><li><a href="global.html#expect">expect</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Mon Jul 29 2024 05:37:57 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

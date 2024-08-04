@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Chart.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Chart.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * ChartSQL Chart class
+ * @param {Object} global - The global object
+ * @return {Object} ChartSQL.Chart - The Chart class *
+ * @memberof ChartSQL
+ */
+ChartSQLjs.Chart = class Chart {
+
+	/** @type {ChartSQLjs.ChartSQL} */
+	#chartsql
+
+	/**
+	 * Constructor for the Chart class
+	 * @param {ChartSQLjs.ChartSQL} chartsql - The ChartSQL object
+	 * @param {ChartSQLjs.Data} data - The Data object
+	 * @param {ChartSQLjs.Directives} directives - The Directives object
+	 * @throws {Error} - If chartsql is not defined
+	 * @throws {Error} - If chartsql is not an instance of ChartSQL.ChartSQL
+	 * @throws {Error} - If data is not defined
+	 * @throws {Error} - If data is not an instance of ChartSQL.Data
+	 * @throws {Error} - If directives is not defined
+	 * @throws {Error} - If directives is not an instance of ChartSQL.Directives
+	 */
+	constructor(
+		chartsql,
+		data,
+		directives
+	) {
+
+		const Validate = ChartSQLjs.Validate;
+
+		this.#chartsql = Validate.instanceOf('chartsql', chartsql, ChartSQLjs.ChartSQL);
+		this.data = Validate.instanceOf('data', data, ChartSQLjs.Data);
+		this.directives = Validate.instanceOf('directives', directives, ChartSQLjs.Directives);
+
+	}
+
+	/**
+	 * Returns the option struct for the chart
+	 */
+	getOption(){
+
+		/**
+		 * @type {Record&lt;string, any>}
+		 */
+		var option = {};
+
+		if(this.directives.isAutoMode){
+
+			var autoChartType = this.data.detectAutoChartType();
+
+			switch(autoChartType){
+
+				case 'column':
+					var fieldsByType = this.data.getFieldsByType();
+					var primaryCategoryField = fieldsByType.string[0];
+					// throw JSON.stringify();
+					var seriesFields = fieldsByType.numeric;
+
+					var option = new ChartSQLjs.chartoptions.ColumnOption(
+						this.directives,
+						primaryCategoryField,
+						seriesFields
+					).getOption();
+
+					break;
+				case 'line':
+
+				case 'grouped-column':
+
+					var fieldsByType = this.data.getFieldsByType();
+					var primaryCategoryField = fieldsByType.string[0];
+					var seriesFields = fieldsByType.numeric;
+
+					var option = new ChartSQLjs.chartoptions.ColumnOption(
+						this.directives,
+						primaryCategoryField,
+						seriesFields
+					).getOption();
+
+					// throw new Error('Grouped column not yet implemented');
+					break;
+
+				case 'pie':
+					option.type = 'pie';
+					break;
+			}
+
+		} else {
+
+			var chartType = this.directives.get('chart');
+
+			if(this.directives.keyExists("category")){
+				throw new Error('Series directive not yet fully implemented');
+			} else {
+				var primaryCategoryField = this.data.firstFieldOfTypes(["string", "date", "datetime", "numeric"]);
+			}
+
+			//get the series fields
+			if(this.directives.keyExists("series")){
+				//Not yet fully implemented
+				throw new Error('Series directive not yet fully implemented');
+				// var seriesFields = this.data.allFieldsOfType("numeric");
+			} else {
+				var seriesFields = this.data.allFieldsOfType("numeric");
+			}
+
+
+			switch(chartType){
+				case 'bar':
+
+					var option = new ChartSQLjs.chartoptions.BarOption(
+						this.directives,
+						primaryCategoryField,
+						seriesFields
+					).option;
+
+					break;
+
+				case 'line':
+					option.type = 'line';
+					break;
+				case 'pie':
+					option.type = 'pie';
+					break;
+			}
+
+		}
+
+		return option;
+	}
+
+	/**
+	 * Renders the chart into the specified target
+	 * @param {string|HTMLElement} target
+	 */
+	render(target){
+
+		//If target is not a DOM element, then look for the element by id
+		if(!(target instanceof HTMLElement)){
+			var tryTarget = document.getElementById(target);
+			if(tryTarget){
+				target = tryTarget;
+			} else {
+				throw new Error('Target element not found');
+			}
+		}
+
+		//Get the option struct for the chart
+		var option = this.getOption();
+
+		//Create the echarts object
+		this.chartInstance = this.#chartsql.echarts.init(target, 'dark');
+		// //Set the option struct
+		this.chartInstance.setOption(option);
+
+	}
+
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="ChartSQLjs.html">ChartSQLjs</a></li><li><a href="Tester.html">Tester</a></li></ul><h3>Classes</h3><ul><li><a href="ChartSQL.ChartSQLjs.Chart.html">ChartSQLjs.Chart</a></li><li><a href="ChartSQLjs.Data.html">Data</a></li><li><a href="ChartSQLjs.DirectiveName.html">DirectiveName</a></li><li><a href="ChartSQLjs.Directives.html">Directives</a></li><li><a href="ChartSQLjs.SQLScript.html">SQLScript</a></li><li><a href="ChartSQLjs.Validate.html">Validate</a></li><li><a href="ChartSQLjs.chartoptions.BarOption.html">BarOption</a></li><li><a href="ChartSQLjs.chartoptions.ColumnOption.html">ColumnOption</a></li><li><a href="ChartSQLjs-ChartSQLjs.ChartSQL.html">ChartSQL</a></li><li><a href="ChartSQLjs-ChartSQLjs.Field.html">Field</a></li><li><a href="GraalJsExpect.html">GraalJsExpect</a></li><li><a href="Tester.Test.html">Test</a></li><li><a href="Tester.Test2.html">Test2</a></li></ul><h3>Global</h3><ul><li><a href="global.html#expect">expect</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Mon Jul 29 2024 05:37:57 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

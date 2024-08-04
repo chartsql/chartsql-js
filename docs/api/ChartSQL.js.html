@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: ChartSQL.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: ChartSQL.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+
+/**
+ * @namespace ChartSQLjs
+ */
+var ChartSQLjs = {};
+
+/**
+ * @enum {string}
+ */
+ChartSQLjs.AutoChartType = {
+	COLUMN: "column",
+	PIE: "pie",
+	BAR: "bar",
+	INDETERMINATE: "indeterminate"
+};
+
+ChartSQLjs.chartoptions = {};
+
+ChartSQLjs.ChartSQL = class ChartSQL {
+
+	/**
+	 * @typedef {Object} ChartSQLOptions
+	 * @property {boolean} [animate] - Whether or not to animate the chart
+	 */
+
+	/**
+	 * Constructor for the ChartSQL class
+	 * @param {ChartSQLOptions} options - Options for the ChartSQL class
+	 */
+	constructor(options) {
+		this._className = 'ChartSQL';
+		this.options = options || {};
+	}
+
+	/**
+	 * @typedef {Object} ChartOptions
+	 * @property {ChartSQLjs.Data} data - The data to be used in the chart.
+	 * @property {ChartSQLjs.Directives} directives - The directives for the chart.
+	 * @property {string} target - The target element or selector where the chart will be rendered.
+	 */
+
+	/** Create a new instance of the Chart class. Will render the chart if options.target is defined
+	 * @param {ChartOptions} options
+	 * @returns {ChartSQLjs.Chart} - The Chart object
+	 */
+	createChart(options) {
+
+		//options.data must exist
+		if (!options.data) {
+			throw new Error('data object is required to be passed to createChart');
+		}
+
+		var data = new ChartSQLjs.Data(
+			options.data.columns,
+			options.data.rows,
+		);
+
+		//If options.directives is already ChartSQL.Directives, then we don't need to do anything
+		if(options.directives instanceof ChartSQLjs.Directives){
+
+			var directives = options.directives;
+
+		} else {
+			//If options.directives is a string, then we need to parse it
+			if(typeof options.directives === 'string'){
+
+				var sqlScript = new ChartSQLjs.SQLScript({
+					chartsql: this,
+					sql: options.directives
+				});
+				var directives = sqlScript.directives;
+				// console.dump(directives);
+			} else {
+				// If options.directives is an object, then we need to create a new instance of the Directives class
+				var directives = new ChartSQLjs.Directives(options.directives || {});
+			}
+
+		}
+
+		var chart = new ChartSQLjs.Chart(
+			this,
+			data,
+			directives
+		);
+
+		//If options.target is defined, then we are going to render the chart
+		//into the target element
+		if(options.target){
+			//Get the target element
+			var tryDom = document.getElementById(options.target);
+
+			// If the target element does not exist, then we need to create it
+			// and append it to the body
+			if(!tryDom){
+				let wrapper = document.createElement('div');
+				wrapper.innerHTML = `&lt;div id="${options.target}" style="width: 800px; height: 600px;">&lt;/div>`;
+				// @ts-ignore
+				document.body.appendChild(wrapper.firstElementChild);
+
+				/** @type {HTMLElement|null} */
+				var chartDom = document.getElementById(options.target);
+				if(!chartDom){
+					throw new Error('Target element not found');
+				}
+				var finalDom = chartDom;
+
+			} else {
+				var finalDom = tryDom;
+			}
+
+			chart.render(finalDom);
+
+		}
+
+		return chart;
+	}
+
+	/**
+	 * Creates a new instance of the SQLScript
+	 * @param {string} sql
+	 * @returns {ChartSQLjs.SQLScript} - The SQLScript object
+	 */
+	createSQLScript(sql) {
+		var sqlScript = new ChartSQLjs.SQLScript({
+			chartsql: this,
+			sql: sql
+		});
+		return sqlScript;
+	}
+
+	get echarts(){
+		// @ts-ignore
+		return window.echarts;
+	}
+
+	get foo(){
+		return 'bar';
+	}
+
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="ChartSQLjs.html">ChartSQLjs</a></li><li><a href="Tester.html">Tester</a></li></ul><h3>Classes</h3><ul><li><a href="ChartSQL.ChartSQLjs.Chart.html">ChartSQLjs.Chart</a></li><li><a href="ChartSQLjs.Data.html">Data</a></li><li><a href="ChartSQLjs.DirectiveName.html">DirectiveName</a></li><li><a href="ChartSQLjs.Directives.html">Directives</a></li><li><a href="ChartSQLjs.SQLScript.html">SQLScript</a></li><li><a href="ChartSQLjs.Validate.html">Validate</a></li><li><a href="ChartSQLjs.chartoptions.BarOption.html">BarOption</a></li><li><a href="ChartSQLjs.chartoptions.ColumnOption.html">ColumnOption</a></li><li><a href="ChartSQLjs-ChartSQLjs.ChartSQL.html">ChartSQL</a></li><li><a href="ChartSQLjs-ChartSQLjs.Field.html">Field</a></li><li><a href="GraalJsExpect.html">GraalJsExpect</a></li><li><a href="Tester.Test.html">Test</a></li><li><a href="Tester.Test2.html">Test2</a></li></ul><h3>Global</h3><ul><li><a href="global.html#expect">expect</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Mon Jul 29 2024 05:37:57 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
