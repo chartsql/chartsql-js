@@ -68,31 +68,31 @@ This readme covers the basics. See additional ChartSQL.js documenation at [docs.
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://chartsql.github.io/chartsql-js/dist/js/chartsql.js"></script>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://chartsql.github.io/chartsql-js/dist/js/chartsql.js"></script>
 	</head>
 	<body>
 
-	<!-- Container for Chart -->
-	<div id="my-chart"></div>
+		<!-- Container for Chart -->
+		<div id="my-chart"></div>
 
-	<script>
-		// Sample data, typically retrieved from executing the SQL query,
-		// but chart data can be from any source.
-		var data = [
-			{category: 'shoes', total_sales: 5000},
-			{category: 'pants', total_sales: 10000},
-			{category: 'shirts', total_sales: 8000},
-			{category: 'socks', total_sales: 4000}
-		]
+		<script>
+			// Sample data, typically retrieved from executing the SQL query,
+			// but chart data can be from any source.
+			var data = [
+				{category: 'shoes', total_sales: 5000},
+				{category: 'pants', total_sales: 10000},
+				{category: 'shirts', total_sales: 8000},
+				{category: 'socks', total_sales: 4000}
+			]
 
-		// Create and render the chart
-		chartsql.createChart({
-		target: 'my-chart',
-		data: data
-		});
-	</script>
+			// Create and render the chart
+			chartsql.createChart({
+				target: 'my-chart',
+				data: data
+			});
+		</script>
 	</body>
 </html>
 ```
@@ -106,13 +106,13 @@ var chartsql = new ChartSQLjs.ChartSQL({
 })
 ```
 
-## Creating Charts&#x20;
+## Creating Charts
 
-`createChart()` allows you to render data into chart visuals at the target HTML element
+`createChart()` render chart data into the target HTML element.
 
 ### createChart options
 
-<table><thead><tr><th>Parameter</th><th width="202">Required?</th><th>Description</th></tr></thead><tbody><tr><td>target</td><td>no</td><td>The DOM element ID where the chart will be rendered. If it doesn't exist it will be appended to the body</td></tr><tr><td>data</td><td>yes</td><td>An object containing the data to be used for rendering the chart. See <a href="overview.md#working-with-data">Working with Data</a></td></tr><tr><td>directives</td><td>yes</td><td>SQL string containing directives, or object of directives.</td></tr></tbody></table>
+<table><thead><tr><th>Parameter</th><th width="202">Required?</th><th>Description</th></tr></thead><tbody><tr><td>target</td><td>no</td><td>The DOM element ID where the chart will be rendered. If it doesn't exist it will be appended to the body</td></tr><tr><td>data</td><td>yes</td><td>An object containing the data to be used for rendering the chart. See <a href="#working-with-data">Working with Data</a></td></tr><tr><td>directives</td><td>yes</td><td>SQL string containing directives, or object of directives.</td></tr></tbody></table>
 
 ## Auto Charts
 
@@ -124,7 +124,8 @@ The auto charts helps you quickly visualize and explore data and then you can [C
 * [Auto Grouped Column](#auto-grouped-column-chart)
 * [Auto Date Line](#auto-date-line-chart)
 
-### Auto Column Chart <a href="https://chartsql.github.io/chartsql-js/docs/demo#auto-column-heading" target="_blank">(demo)</a>
+### Auto Column Chart
+<a href="https://chartsql.github.io/chartsql-js/docs/demo#auto-column-heading" target="_blank">demo</a>
 
 When there is one string and one numeric field in the data
 
@@ -152,17 +153,14 @@ chartsql.createChart({
 ```
 
 
-### Auto Grouped Column Chart <a href="https://chartsql.github.io/chartsql-js/docs/demo#auto-grouped-column-heading" target="_blank">(demo)</a>
+### Auto Grouped Column Chart
+<a href="https://chartsql.github.io/chartsql-js/docs/demo#auto-grouped-column-heading" target="_blank">demo</a>
 
 When there is one string and 2 or more numeric fields the numeric fields will be grouped
 
 ```javascript
 {category: 'shoes', total_sales: 5000, total_profit: 2000}
 ```
-
-
-<figure><img src="../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
-
 
 
 ```javascript
@@ -185,7 +183,8 @@ chartsql.createChart({
 ```
 
 
-### Auto Date Line Chart <a href="https://chartsql.github.io/chartsql-js/docs/demo#auto-dateline-heading" target="_blank">(demo)</a>
+### Auto Date Line Chart
+<a href="https://chartsql.github.io/chartsql-js/docs/demo#auto-dateline-heading" target="_blank">demo</a>
 
 When there is a date field and a numeric field
 
@@ -225,7 +224,8 @@ You can specify exactly how to render the chart with directives (aka @directives
 
 Directives allow you to fully control the type of chart and the selection of the categories, series formats and other ChartSQL.js features.
 
-### Basic Directives Example <a href="https://chartsql.github.io/chartsql-js/docs/demo#basic-bar-heading" target="_blank">(demo)</a>
+### Basic Directives Example
+<a href="https://chartsql.github.io/chartsql-js/docs/demo#basic-bar-heading" target="_blank">demo</a>
 
 `createChart()` takes a 'directives' object which contains the directives for controlling rendering of the chart.
 
@@ -265,7 +265,9 @@ ChartSQL.js is designed to work with table like data of columns and rows. Typica
 
 ChartSQL.js liberally accepts table data in a few different formats that you pass to the `createChart()` method.
 
-### Array of Objects <a href="https://chartsql.github.io/chartsql-js/docs/demo#data-array-of-objects-heading" target="_blank">(demo)</a>
+### Array of Objects
+<a href="https://chartsql.github.io/chartsql-js/docs/demo#data-array-of-objects-heading" target="_blank">demo</a>
+
 ```javascript
 var data = [
 	{ category: 'shoes', total_sales: 5000 },
@@ -275,7 +277,8 @@ var data = [
 ];
 ```
 
-### Array of Arrays <a href="https://chartsql.github.io/chartsql-js/docs/demo#data-array-of-arrays-heading" target="_blank">(demo)</a>
+### Array of Arrays
+<a href="https://chartsql.github.io/chartsql-js/docs/demo#data-array-of-arrays-heading" target="_blank">demo</a>
 
 `The first row in the array should be the column names`
 
@@ -290,7 +293,8 @@ var data = [
 ];
 ```
 
-### Table Object <a href="https://chartsql.github.io/chartsql-js/docs/demo#data-table-object-heading" target="_blank">(demo)</a>
+### Table Object
+<a href="https://chartsql.github.io/chartsql-js/docs/demo#data-table-object-heading" target="_blank">demo</a>
 
 ```javascript
 var data = {
@@ -304,7 +308,8 @@ var data = {
 };
 ```
 
-### Data Class <a href="https://chartsql.github.io/chartsql-js/docs/demo#data-data-class-heading" target="_blank">(demo)</a>
+### Data Class
+<a href="https://chartsql.github.io/chartsql-js/docs/demo#data-data-class-heading" target="_blank">demo</a>
 
 If desired, you can instantiate your own instance of the Data.js class that ChartSQL creates internally.
 
