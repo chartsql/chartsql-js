@@ -1,6 +1,6 @@
 # Description
 
-ChartSQL.js is a library to quickly chart SQL (or any table like data) within any web application.
+ChartSQL.js is a browser library to quickly chart SQL (or any table like data) within any web application.
 
 Full documentation at [docs.chartsql.com](https://docs.chartsql.com)
 
@@ -220,14 +220,14 @@ chartsql.createChart({
 
 ## Customizing Charts
 
-You can specify exactly how to render the chart with directives (aka @directives).&#x20;
+You can specify exactly how to render the chart with directives.
 
 Directives allow you to fully control the type of chart and the selection of the categories, series formats and other ChartSQL.js features.
 
 ### Basic Directives Example
 <a href="https://chartsql.github.io/chartsql-js/docs/demo#basic-bar-heading" target="_blank">demo</a>
 
-`createChart()` takes a 'directives' object which contains the directives for controlling rendering of the chart.
+`createChart()` takes a `directives` object which control the rendering of the chart data.
 
 
 ```javascript
