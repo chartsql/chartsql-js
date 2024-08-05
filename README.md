@@ -335,3 +335,13 @@ ChartSQL.js is the parsing and rendering layer of ChartSQL, a data analytics and
 * `ChartSQL Studio` - Desktop SQL and Charting IDE
 * `ChartSQL Cloud` - Online Dashboards
 * `ChartSQL.js` - Embedded web application charts
+
+# Support
+Support is provided by our [Discord community](https://discord.gg/UbHYA6nyTg). If you are having an issue, please discuss it there.
+
+All known issues will be documented on this Github repo.
+
+# Contributing
+While ChartSQL.js is open source, we are not accepting outside source code contributions at this time.
+
+You can contribute to the project by making issues and joining our [Discord community](https://discord.gg/UbHYA6nyTg)
