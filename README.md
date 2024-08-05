@@ -1,19 +1,32 @@
----
-description: Easy JavaScript based charts in any web application
----
+# Description
 
-# Overview
+ChartSQL.js is a library to quickly chart SQL (or any table like data) within any web application.
 
-ChartSQL.js is an open source library to chart SQL (or any table like data) seamlessly within any web application.
+Full documentation at [docs.chartsql.com](https://docs.chartsql.com)
 
-We have designed ChartSQL.js to be the easiest to use JavaScript charting library available.
+See the ChartSQL.js [live demos](https://chartsql.github.io/chartsql-js/docs/demo)
 
-#### Key Benefits
+## Key Features
 
 * Simple .js integration
 * Supports any SQL table-like or NoSQL source of data
 * Full rendering control with intuitive @directives
-* What You Query is What You Chart (Whikee-Whic) - Simple and declarative charting.
+* What You Query is What You Chart (we call it Whikee-Whic) - Simple and declarative charting.
+
+## Supported Charts
+
+* Area
+* Colum
+* Bar
+* Bubble
+* Column
+* Combo
+* Gauge
+* Heatmap
+* Line
+* Pie
+* Radar
+* Scatter
 
 ## Minimal Example
 
@@ -30,15 +43,20 @@ var data = [
 
 // Render the data into a chart
 chartsql.createChart({
-  // Target HTML element id to place the chart, or one
-  // will be created and appended to the body
   target: 'auto-column',
-  // The data for the chart
   data: data
 });
 ```
 
-<figure><img src="../../../.gitbook/assets/image (5).png" alt=""><figcaption><p>An example auto generating column chart</p></figcaption></figure>
+# Getting Started Documenation
+
+See additional ChartSQL.js documenation at [docs.chartsql.com](https://docs.chartsql.com)
+
+* [Quick Start](#quick-start)
+* [Creating Charts](#creating-charts)
+* [Auto Charts](#auto-charts)
+* [Customizing Charts](#customizing-charts)
+* [Working with Data](#working-with-data)
 
 ## Quick Start
 
@@ -47,37 +65,46 @@ chartsql.createChart({
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="../chartsql.js"></script>
-</head>
-<body>
+	<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://chartsql.github.io/chartsql-js/dist/js/chartsql.js"></script>
+	</head>
+	<body>
 
-  <!-- Container for Chart -->
-  <div id="my-chart"></div>
+	<!-- Container for Chart -->
+	<div id="my-chart"></div>
 
-  <script>
-    // Sample data, typically retrieved from executing the SQL query,
-    // but chart data can be from any source.
-    var data = [
-	{category: 'shoes', total_sales: 5000},
-	{category: 'pants', total_sales: 10000},
-	{category: 'shirts', total_sales: 8000},
-	{category: 'socks', total_sales: 4000}
-    ]
+	<script>
+		// Sample data, typically retrieved from executing the SQL query,
+		// but chart data can be from any source.
+		var data = [
+			{category: 'shoes', total_sales: 5000},
+			{category: 'pants', total_sales: 10000},
+			{category: 'shirts', total_sales: 8000},
+			{category: 'socks', total_sales: 4000}
+		]
 
-    // Create and render the chart
-    chartsql.createChart({
-      target: 'my-chart',
-      data: data
-    });
-  </script>
-</body>
+		// Create and render the chart
+		chartsql.createChart({
+		target: 'my-chart',
+		data: data
+		});
+	</script>
+	</body>
 </html>
 ```
 
-## createChart({})&#x20;
+## Global Config
+The chartsql.js script already sets up a global `chartsql` variable with a basic configuration. If you want to customize your global settings, create a new `ChartSQL` instance
+
+```javascript
+var chartsql = new ChartSQLjs.ChartSQL({
+	//... options
+})
+```
+
+## Creating Charts&#x20;
 
 `createChart()` allows you to render data into chart visuals at the target HTML element
 
@@ -87,7 +114,7 @@ The typical flow is:
 * Fetch data
 * call `createChart()` to render the data into a chart.
 
-### Parameters
+### createChart options
 
 <table><thead><tr><th>Parameter</th><th width="202">Required?</th><th>Description</th></tr></thead><tbody><tr><td>target</td><td>no</td><td>The DOM element ID where the chart will be rendered.</td></tr><tr><td>data</td><td>yes</td><td>An object containing the data to be used for rendering the chart. See <a href="overview.md#working-with-data">Working with Data</a></td></tr><tr><td>directives</td><td>yes</td><td>SQL string containing directives, or object of directives.</td></tr></tbody></table>
 
@@ -95,11 +122,11 @@ The typical flow is:
 
 ChartSQL.js will try to automatically choose a basic chart type depending on the fields in your data.
 
-The auto charts helps you quickly visualize and explore data and then you can [Customize Charts](overview.md#customizing-charts) for more control.
+The auto charts helps you quickly visualize and explore data and then you can [Customize Charts](#customizing-charts) for more control.
 
-* [Auto Column](overview.md#auto-column-chart)
-* [Auto Grouped Column](overview.md#auto-grouped-column-chart)
-* [Auto Date Line](overview.md#auto-date-line-chart)
+* [Auto Column](#auto-column-chart)
+* [Auto Grouped Column](#auto-grouped-column-chart)
+* [Auto Date Line](#auto-date-line-chart)
 
 ### Auto Column Chart
 
@@ -239,12 +266,12 @@ chartsql.createChart({
 
 ### Common Directives
 
-* chart - The type of chart: bar, column, line etc
-* category - The column to use for the category (primary axis) of the chart
-* series - The column/s to use for the data (secondary axis) of the chart
-* formats - The data formats to render for the series
+* `chart` - The type of chart: bar, column, line etc
+* `category` - The column to use for the category (primary axis) of the chart
+* `series` - The column/s to use for the data (secondary axis) of the chart
+* `formats` - The data formats to render for the series
 
-You can [See All Directives](../../../reference/directives/) for all the ways in which you can customize your charts.
+You can [See All Directives](https://docs.chartsql.com/reference/directives) at docs.chartsql.com for all the ways in which you can customize your charts.
 
 
 ## Working with Data
@@ -254,7 +281,6 @@ ChartSQL.js is designed to work with table like data of columns and rows. Typica
 ChartSQL.js liberally accepts table data in a few different formats that you pass to the `createChart()` method.
 
 ### Array of Objects
-
 ```javascript
 var data = [
 	{ category: 'shoes', total_sales: 5000 },
@@ -266,7 +292,8 @@ var data = [
 
 ### Array of Arrays
 
-The first row in the array should be the column names
+`The first row in the array should be the column names`
+
 
 ```javascript
 var data = [
@@ -308,51 +335,13 @@ var data = new ChartSQLjs.Data({
 });
 ```
 
-## Relationship to ChartSQL Studio, Datasources, Dashboards & Extensions&#x20;
+# Further Documentation
+See full documumentation at [docs.chartsql.com](https://docs.chartsql.com)
 
-ChartSQL.js is the parsing and rendering layer. It does not handle managing and executing SQL against datasources, creating dashboards, or editing SQL Charts.
+# ChartSQL Ecosystem
 
-## Supported Features
+ChartSQL.js is the parsing and rendering layer of ChartSQL, a data analytics and visualization suite. See more at [docs.chartsql.com](https://docs.chartsql.com)
 
-ChartSQL.js is a subset of ChartSQL Studio and Dashboard Features. See the tables below of supported features
-
-* ✔️ = fully supported
-* ❌ = no support planned
-* ☐   = support planned
-* 〰️ = Partial support
-
-### Auto Charts
-
-List of [auto-charts.md](../../../reference/auto-charts.md "mention") charts that are currently supported
-
-<table><thead><tr><th width="287">Auto Chart</th><th>ChartSQL.js</th><th>ChartSQL Studio</th></tr></thead><tbody><tr><td>Column</td><td>✔️</td><td>✔️</td></tr><tr><td>Grouped Column</td><td>☐</td><td>✔️</td></tr><tr><td>Date-based Line</td><td>☐</td><td>✔️</td></tr><tr><td>Datetime based line</td><td>☐</td><td>✔️</td></tr><tr><td>Stacked-Grouped Column</td><td>☐</td><td>✔️</td></tr><tr><td>Scatter</td><td>☐</td><td>✔️</td></tr><tr><td>Bubble (scatter with size)</td><td>☐</td><td>✔️</td></tr><tr><td>Heatmap</td><td>☐</td><td>✔️</td></tr></tbody></table>
-
-### Chart Types
-
-List of Chart Types that are currently supported
-
-| Type    | ChartSQL.js | ChartSQL Studio |
-| ------- | ----------- | --------------- |
-| Area    | ☐           | ✔️              |
-| Bar     | ☐           | ✔️              |
-| Bubble  | ☐           | ✔️              |
-| Column  | ☐           | ✔️              |
-| Combo   | ☐           | ✔️              |
-| Guage   | ☐           | ✔️              |
-| Heatmap | ☐           | ✔️              |
-| Line    | ☐           | ✔️              |
-| Pie     | ☐           | ✔️              |
-| Radar   | ☐           | ✔️              |
-| Scatter | ☐           | ✔️              |
-
-### Directives
-
-<table><thead><tr><th>Directive</th><th width="127">ChartSQL.js</th><th width="181">ChartSQL Studio</th><th>Note</th></tr></thead><tbody><tr><td>@baselines</td><td>☐</td><td>✔️</td><td></td></tr><tr><td>@baseline-types</td><td>☐</td><td>✔️</td><td></td></tr><tr><td>@chart</td><td>✔️</td><td>✔️</td><td></td></tr><tr><td>@cateogry</td><td>☐</td><td>✔️</td><td></td></tr><tr><td>@formats</td><td>☐</td><td>✔️</td><td></td></tr><tr><td>@series</td><td>☐</td><td>✔️</td><td></td></tr><tr><td>@title</td><td>☐</td><td>✔️</td><td></td></tr><tr><td>@subtitle</td><td>☐</td><td>✔️</td><td></td></tr><tr><td>@groups</td><td>☐</td><td>✔️</td><td></td></tr><tr><td>@series-types</td><td>☐</td><td>✔️</td><td></td></tr><tr><td>@series-labels</td><td>☐</td><td>✔️</td><td></td></tr><tr><td>@stacking-mode</td><td>☐</td><td>✔️</td><td></td></tr><tr><td>@dash-id</td><td>❌</td><td>✔️</td><td>Only used for publishing to ChartSQL cloud. No use for ChartSQL.js</td></tr><tr><td>@overlay-series</td><td>☐</td><td>✔️</td><td></td></tr><tr><td>@tags</td><td>❌</td><td>✔️</td><td>Used for searching inside ChartSQL Studio and dashboards. Not used by ChartSQL.js</td></tr><tr><td>@mongodb-query</td><td>❌</td><td>✔️</td><td>Only used by ChartSQL Studio</td></tr></tbody></table>
-
-### Other Capabilities
-
-| Capability      | ChartSQL.js | ChartSQL Studio | Note                                                         |
-| --------------- | ----------- | --------------- | ------------------------------------------------------------ |
-| Series Assist   | ☐           | ✔️              | Assists when selecting series and no @series is defined      |
-| Category Assist | ☐           | ✔️              | Assists in selecting categories when no @category is defined |
-|                 |             |                 |                                                              |
+* `ChartSQL Studio` - Desktop SQL and Charting IDE
+* `ChartSQL Cloud` - Online Dashboards
+* `ChartSQL.js` - Embedded web application charts
