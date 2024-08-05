@@ -4,7 +4,7 @@ ChartSQL.js is a library to quickly chart SQL (or any table like data) within an
 
 Full documentation at [docs.chartsql.com](https://docs.chartsql.com)
 
-See the ChartSQL.js <a href="https://chartsql.github.io/chartsql-js/docs/demo" taget="_blank">live demos</a>
+See the ChartSQL.js <a href="https://chartsql.github.io/chartsql-js/docs/demo" target="_blank">live demos</a>
 
 ## Key Features
 
