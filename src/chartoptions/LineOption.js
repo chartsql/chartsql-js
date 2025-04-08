@@ -4,7 +4,7 @@
 ChartSQLjs.chartoptions.LineOption = class LineOption {
 
 	/**
-	 * Creates a Bar chart option struct given the directives, primary category field, and series fields
+	 * Creates a Line chart option struct given the directives, primary category field, and series fields
 	 * @param {ChartSQLjs.Directives} directives
 	 * @param {ChartSQLjs.Field} primaryCategoryField
 	 * @param {Array<ChartSQLjs.Field>} seriesFields
@@ -32,7 +32,10 @@ ChartSQLjs.chartoptions.LineOption = class LineOption {
 		var yAxis = [];
 
 		yAxis.push({
-			type:'value'
+			type:'value',
+			axisLabel: {
+				formatter: ChartSQLjs.Chart.functionFromFormat(this.seriesFields[0].format)
+			}
 		})
 
 		//If any series are isSecondarySeries then we need to add a secondary yAxis
@@ -42,7 +45,10 @@ ChartSQLjs.chartoptions.LineOption = class LineOption {
 
 			if(seriesItem.isSecondarySeries || false){
 				yAxis.push({
-					type:'value'
+					type:'value',
+					axisLabel: {
+						formatter: ChartSQLjs.Chart.functionFromFormat(seriesItem.format)
+					},
 				})
 				break;
 			}
@@ -85,7 +91,7 @@ ChartSQLjs.chartoptions.LineOption = class LineOption {
 			xAxis: [
 				{
 					type: 'category',
-					data: this.primaryCategoryField.columnData,
+					data: this.primaryCategoryField.columnData
 				}
 			],
 			yAxis:yAxis,

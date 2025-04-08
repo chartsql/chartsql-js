@@ -1,10 +1,10 @@
 /**
  * Encapsulates the code to generate an option struct for a Column chart
  */
-ChartSQLjs.chartoptions.BarOption = class BarOption {
+ChartSQLjs.chartoptions.AreaOption = class AreaOption {
 
 	/**
-	 * Creates a Bar chart option struct given the directives, primary category field, and series fields
+	 * Creates a Line chart option struct given the directives, primary category field, and series fields
 	 * @param {ChartSQLjs.Directives} directives
 	 * @param {ChartSQLjs.Field} primaryCategoryField
 	 * @param {Array<ChartSQLjs.Field>} seriesFields
@@ -29,11 +29,36 @@ ChartSQLjs.chartoptions.BarOption = class BarOption {
 	get option(){
 
 		var series = [];
+		var yAxis = [];
+
+		yAxis.push({
+			type:'value',
+			axisLabel: {
+				formatter: ChartSQLjs.Chart.functionFromFormat(this.seriesFields[0].format)
+			}
+		})
+
+		//If any series are isSecondarySeries then we need to add a secondary yAxis
 		for(var seriesIndex in this.seriesFields){
 
 			var seriesItem = this.seriesFields[seriesIndex];
 
-			if(this.directives.keyExists('stacks')){
+			if(seriesItem.isSecondarySeries || false){
+				yAxis.push({
+					type:'value',
+					axisLabel: {
+						formatter: ChartSQLjs.Chart.functionFromFormat(seriesItem.format)
+					}
+				})
+				break;
+			}
+		}
+
+		for(var seriesIndex in this.seriesFields){
+
+			var seriesItem = this.seriesFields[seriesIndex];
+
+			if(this.directives.keyExists("stacks")){
 				for(var stackItem in this.directives.get('stacks')){
 					if(stackItem == seriesItem.groupField)
 					seriesItem.stack = seriesItem.groupField;
@@ -41,58 +66,45 @@ ChartSQLjs.chartoptions.BarOption = class BarOption {
 			}
 
 			if(seriesItem.isSecondarySeries || false){
-				var xAxisIndex = 1;
+				var yAxisIndex = 1;
 			} else {
-				var xAxisIndex = 0;
+				var yAxisIndex = 0;
 			}
-
-			// throw JSON.stringify(seriesItem);
 
 			series.push({
 				name: seriesItem.name,
-				type: 'bar',
+				type: 'line',
+                areaStyle: {},
+				yAxisIndex: yAxisIndex,
 				data: seriesItem.columnData,
-				xAxisIndex: xAxisIndex,
 				stack: seriesItem.stack || false
 			});
 		}
 
-		/**
-		 * @type {Record<string, any>}
-		 */
 		var option = {
 			legend: {},
-			tooltip: {
-				trigger: 'axis',
-				axisPointer: {
-					type: 'shadow'
-				}
-			},
 			grid: {
 				left: '3%',
 				right: '4%',
 				bottom: '3%',
-				top: '10%',
 				containLabel: true
 			},
-			yAxis: [
+			xAxis: [
 				{
 					type: 'category',
 					data: this.primaryCategoryField.columnData,
-					inverse:true
 				}
 			],
-			xAxis:[
-				{
-					type:'value',
-					axisLabel: {
-						formatter: ChartSQLjs.Chart.functionFromFormat(this.seriesFields[0].format)
-					}
-				}
-			],
+			yAxis:yAxis,
 			series: series
 		};
+
+		if(this.primaryCategoryField.datatype == "date" || this.primaryCategoryField.datatype == "datetime"){
+			option.xAxis[0].type = "time";
+		}
+
 		return option;
+
 	}
 
 }

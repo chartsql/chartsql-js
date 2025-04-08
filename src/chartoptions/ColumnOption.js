@@ -30,7 +30,10 @@ ChartSQLjs.chartoptions.ColumnOption = class ColumnOption {
 		var yAxis = [];
 
 		yAxis.push({
-			type:'value'
+			type:'value',
+			axisLabel: {
+				formatter: ChartSQLjs.Chart.functionFromFormat(this.seriesFields[0].format)
+			},
 		})
 
 		//If any series are isSecondarySeries then we need to add a secondary yAxis
@@ -38,7 +41,10 @@ ChartSQLjs.chartoptions.ColumnOption = class ColumnOption {
 			var seriesItem = this.seriesFields[index];
 			if(seriesItem.isSecondarySeries || false){
 				yAxis.push({
-					type:'value'
+					type:'value',
+					axisLabel: {
+						formatter: ChartSQLjs.Chart.functionFromFormat(seriesItem.format)
+					},
 				})
 				break;
 			}

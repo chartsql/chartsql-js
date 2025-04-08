@@ -5,62 +5,216 @@
 			target: "auto-column",
 			title: "Auto Column",
 			description: "An automatically generated column chart from one string field and one numeric field.",
-			script: "auto_column.js"
+			category: "Auto Charts",
+			script: "auto_charts/auto_column.js"
 		},
 		{
 			target: "auto-grouped-column",
 			title: "Auto Grouped Column",
 			description: "An automatically generated grouped column chart from one string field and two numeric fields.",
-			script: "auto_grouped_column.js"
+			category: "Auto Charts",
+			script: "auto_charts/auto_grouped_column.js"
 		},
 		{
 			target: "auto-dateline",
 			title: "Auto Date Line",
 			description: "An automatically generated line chart from a date field and a numeric field.",
-			script: "auto_dateline.js"
+			category: "Auto Charts",
+			script: "auto_charts/auto_dateline.js"
+		},
+		{
+			target: "auto-timeline",
+			title: "Auto Datetime Line",
+			description: "An automatically generated line chart from a datetime field and a numeric field.",
+			category: "Auto Charts",
+			script: "auto_charts/auto_timeline.js"
 		},
 		{
 			target: "basic-bar",
 			title: "Basic Bar",
 			description: "A basic bar chart with a few data points.",
-			script: "basic_bar.js"
+			category: "Basic Charts",
+			script: "basic_charts/basic_bar.js"
+		},
+		{
+			target: "basic-line",
+			title: "Basic Line",
+			description: "A basic line chart with a few data points.",
+			category: "Basic Charts",
+			script: "basic_charts/basic_line.js"
+		},
+		{
+			target: "basic-area",
+			title: "Basic Area",
+			description: "A basic area chart with a few data points.",
+			category: "Basic Charts",
+			script: "basic_charts/basic_area.js"
+		},
+		{
+			target: "basic-bubble",
+			title: "Basic Bubble",
+			description: "A basic bubble chart with a few data points.",
+			category: "Basic Charts",
+			script: "basic_charts/basic_bubble.js"
+		},
+		{
+			target: "auto-bubble",
+			title: "Auto Bubble",
+			description: "An auto bubble chart with a few data points.",
+			category: "Auto Charts",
+			script: "auto_charts/auto_bubble.js"
+		},
+		{
+			target: "basic-scatter",
+			title: "Basic Scatter",
+			description: "A basic scatter chart with a few data points.",
+			category: "Basic Charts",
+			script: "basic_charts/basic_scatter.js"
+		},
+		{
+			target: "auto-scatter",
+			title: "Auto Scatter",
+			description: "An auto scatter chart with a few data points.",
+			category: "Auto Charts",
+			script: "auto_charts/auto_scatter.js"
+		},
+		{
+			target: "basic-pie",
+			title: "Basic Pie",
+			description: "A basic pie chart with a few data points.",
+			category: "Basic Charts",
+			script: "basic_charts/basic_pie.js"
+		},
+		{
+			target: "auto-heatmap",
+			title: "Auto Heatmap",
+			description: "An auto heatmap chart with a few data points.",
+			category: "Auto Charts",
+			script: "auto_charts/auto_heatmap.js"
+		},
+		{
+			target: "basic-heatmap",
+			title: "Basic Heatmap",
+			description: "A basic heatmap chart with a few data points.",
+			category: "Basic Charts",
+			script: "basic_charts/basic_heatmap.js"
+		},
+		{
+			target: "basic-gauge",
+			title: "Basic Gauge",
+			description: "A basic gauge chart with a few data points.",
+			category: "Basic Charts",
+			script: "basic_charts/basic_gauge.js"
+		},
+		{
+			target: "basic-combo",
+			title: "Basic Combo",
+			description: "A basic combo chart with a few data points.",
+			category: "Basic Charts",
+			script: "basic_charts/basic_combo.js"
+		},
+		{
+			target: "one-groups-directive-aggregating",
+			title: "Combo - One Group Directive",
+			description: "A combo chart with one groups directive.",
+			category: "Groups Directive",
+			script: "groups_directive/one_groups_directive_aggregating.js"
+		},
+		{
+			target: "two-groups-directive-aggregating",
+			title: "Combo - Two Group Directive aggregating",
+			description: "A combo chart with two groups directive and aggregating.",
+			category: "Groups Directive",
+			script: "groups_directive/two_groups_directive_aggregating.js"
+		},
+		{
+			target: "two-groups-directive",
+			title: "Combo - Two Group Directive",
+			description: "A combo chart with two groups directive.",
+			category: "Groups Directive",
+			script: "groups_directive/two_groups_directive.js"
 		},
 		{
 			target: "data-array-of-objects",
 			title: "Data Array of Objects",
 			description: "Chart data can come from an array of objects.",
-			script: "data_array_of_objects.js"
+			category: "Data Structure",
+			script: "data_structures/data_array_of_objects.js"
 		},
 		{
 			target: "data-array-of-arrays",
 			title: "Data Array of Arrays",
 			description: "Chart data can come from an array of arrays where the first array are the column names",
-			script: "data_array_of_arrays.js"
+			category: "Data Structure",
+			script: "data_structures/data_array_of_arrays.js"
 		},
 		{
 			target: "data-table-object",
 			title: "Data Table Object",
 			description: "Chart data can come from an object with columns and rows keys.",
-			script: "data_table_object.js"
+			category: "Data Structure",
+			script: "data_structures/data_table_object.js"
 		},
 		{
 			target: "data-data-class",
 			title: "Data Class",
 			description: "Chart data can come from instantiating a Data class.",
-			script: "data_data_class.js"
+			category: "Data Structure",
+			script: "data_structures/data_data_class.js"
 		},
 		{
 			target: "basic-sql",
 			title: "SQL Script Directives",
 			description: "Chart data can come from a SQL script with directives.",
-			script: "basic_sql.js"
+			category: "Basic Charts",
+			script: "basic_charts/basic_sql.js"
 		},
+		{
+			target: "formats-directive-currency",
+			title: "Formats Directive with 'currency' value",
+			description: "Basic chart with 'currency' format.",
+			category: "Formats",
+			script: "formats/formats_directive_currency.js"
+		},
+		{
+			target: "formats-directive-decimal",
+			title: "Formats Directive with 'decimal' value",
+			description: "Basic chart with 'decimal' format.",
+			category: "Formats",
+			script: "formats/formats_directive_decimal.js"
+		},
+		{
+			target: "formats-directive-integer",
+			title: "Formats Directive with 'integer' value",
+			description: "Basic chart with 'integer' format.",
+			category: "Formats",
+			script: "formats/formats_directive_integer.js"
+		},
+		{
+			target: "formats-directive-none",
+			title: "Formats Directive with 'none' value",
+			description: "Basic chart with 'none' format.",
+			category: "Formats",
+			script: "formats/formats_directive_none.js"
+		},
+		{
+			target: "formats-directive-percent",
+			title: "Formats Directive with 'percent' value",
+			description: "Basic chart with 'percent' format.",
+			category: "Formats",
+			script: "formats/formats_directive_percent.js"
+		}
 	]
 
+	var categories = structNew("Ordered");;
 	for(var example in data.examples){
 		example.code = fileRead("../../docs/examples/#example.script#");
+		if(!structKeyExists(categories, example.category)){
+			categories[example.category] = [example];
+		} else {
+			arrayAppend(categories[example.category], example);
+		}
 	}
-
 </cfscript>
 <cf_handlebars context="#data#">
 <html lang="en">
@@ -89,36 +243,74 @@
 </head>
 <body>
 	<div class="container-fluid">
+		<div class="col-2" style="position:fixed !important; overflow-y:scroll !important; overflow-x:hidden; top: 0; bottom:0;">
+			<h1>Examples</h1>
+			<ul>
+				<cfoutput>
+					<cfloop collection="#categories#" item="category">
+						<li><a href="###category#-heading">#category#</a></li>
+						<ul>
+							<cfloop array="#categories[category]#" item="example">
+								<!--- <cfdump var="#example#"> --->
+								<li><a href="###example.target#-heading">#example.title#</a></li>
+							</cfloop>
+						</ul>
+					</cfloop>
+				</cfoutput>
+			</ul>
+		</div>
 		<div class="row">
 			<div class="col-2">
-				<h1>Examples</h1>
-				<ul>
-					{{#each examples}}
-					<li><a href="#{{target}}-heading">{{title}}</a></li>
-					{{/each}}
-				</ul>
+				<div></div>
 			</div>
+			<!--- Make the column sticky --->
 			<div class="col-10">
 				<h1 id="top" class="mb-3">ChartSQL.js Examples</h1>
 
-				{{#each examples}}
+				<cfoutput>
+					<cfloop collection="#categories#" item="category">
+						<h1 id="#category#-heading">#category#</h1>
+
+
+						<cfloop array="#categories[category]#" item="example">
+							<div id="#example.target#-heading" style="width:100%;">
+								<h3 class="text-secondary">#example.title# <small><a href="##top">top</a></small></h3>
+							</div>
+							<div class="row mb-3 g-0" style="height:600px;">
+								<div class="col-6 position-relative">
+									<textarea id="#example.target#-code" class="codeEditor" data-name="#example.target#"></textarea>
+									<div style="position:absolute; top:0; right:0; z-index:1;">
+										<button onclick="runScript('#example.target#-code')">Run</button>
+										<button onclick="copyToClipboard('#example.target#-code')">copy</button>
+									</div>
+								</div>
+								<div class="col-6">
+									<div id="#example.target#" class="chartRender" data-name="#example.target#" style="width:100%; height:100%; background-color:green;"></div>
+								</div>
+							</div>
+							<script id="#example.target#-script" class="chartScript" data-name="#example.target#" type="module">#example.code#</script>
+						</cfloop>
+					</cfloop>
+				</cfoutput>
+
+				<!--- {{#each examples}}
 				<h2 id="{{target}}-heading">{{title}} <small><a href="#top">top</a></small></h2>
 				<!--- <div class="row mb-3">
 				</div> --->
 				<div class="row mb-3 g-0" style="height:600px;">
-					<div class="col position-relative">
+					<div class="col-6 position-relative">
 						<textarea id="{{target}}-code" class="codeEditor" data-name="{{target}}"></textarea>
 						<div style="position:absolute; top:0; right:0; z-index:1;">
 							<button onclick="runScript('{{target}}-code')">Run</button>
 							<button onclick="copyToClipboard('{{target}}-code')">copy</button>
 						</div>
 					</div>
-					<div class="col" class="">
+					<div class="col-6">
 						<div id="{{target}}" class="chartRender" data-name="{{target}}" style="width:100%; height:100%; background-color:green;"></div>
 					</div>
 				</div>
 				<script id="{{target}}-script" class="chartScript" data-name="{{target}}" type="module">{{{code}}}</script>
-				{{/each}}
+				{{/each}} --->
 			</div>
 		</div>
 	</div>

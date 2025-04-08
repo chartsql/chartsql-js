@@ -10,7 +10,9 @@ var ChartSQLjs = {};
  */
 ChartSQLjs.AutoChartType = {
 	COLUMN: "column",
+	LINE: "line",
 	PIE: "pie",
+	AREA: "line",
 	BAR: "bar",
 	INDETERMINATE: "indeterminate"
 };

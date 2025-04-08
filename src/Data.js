@@ -268,6 +268,10 @@ ChartSQLjs.Data = class Data {
 				// get the value of the matching column
 				var value = row[columnIndex];
 
+				if (value == null) {
+					continue;
+				}
+
 				// we need to detct if the datatype of the value is a string, numeric, date or datetime
 				var datatype = 'string';
 
@@ -526,6 +530,317 @@ ChartSQLjs.Data = class Data {
 			columnData.push(this.rows[i][columnIndex]);
 		}
 		return columnData;
+	}
+
+	/**
+	 * Given the name returns a list of all the unique values for that column.
+	 * 
+	 * We will use a map for efficiency to check if the value exists in the map
+	 * @param {string} name
+	 * @returns {*}
+	 */
+	getUniqueColumnData(name){
+		var columnIndex = this.columns.indexOf(name);
+		var columnData = [];
+		/**
+		 * @type {Record<string, boolean>}
+		 */
+		var uniqueValues = {};
+		for(var i = 0; i < this.rows.length; i++){
+			var value = this.rows[i][columnIndex];
+			if(!uniqueValues[value]){
+				uniqueValues[value] = true;
+				columnData.push(value);
+			}
+		}
+		return columnData;
+	}
+
+	/**
+	 * Given the name returns a list of all the unique values for that column.
+	 * @param {string} name
+	 * @returns { ChartSQLjs.Data }
+	 */
+	selectDistinct(name){
+		return new ChartSQLjs.Data({
+			columns: [name.trim()],
+			rows: this.getUniqueColumnData(name.trim()).map((/** @type {any} */ value) => [value])
+		});
+	}
+
+	/**
+	 * Gets a list of all the values for the column where the where column name matches the where value
+	 * @param {string} columnName
+	 * @param {string} whereColumnName
+	 * @param {string} whereValue
+	 * @returns { any[] }
+	 */
+	getValuesFromColumnWhere(columnName, whereColumnName, whereValue){
+		const columnIndex = this.columns.indexOf(columnName);
+
+		const whereColumnIndex = this.columns.indexOf(whereColumnName);
+		const values = [];
+
+		for (let i = 0; i < this.rows.length; i++) {
+			if (this.rows[i][whereColumnIndex] === whereValue) {
+				values.push(this.rows[i][columnIndex]);
+			}
+		}
+
+		return values;
+	}
+
+	/**
+	 * Group by the data according to the fields and aggregation functions
+	 *  
+	 * Note: First step to create the unique array of keys, then second go back to the 
+	 * original dataset then collect the values into an array where each row matches
+	 * each element of the key, then for each of the element array collected you apply the
+	 * matching function. The last step is to recontruct the final Data object.
+	 * 
+	 * @param { Array<ChartSQLjs.Aggfunc> } aggFields
+	 * @param { Array<ChartSQLjs.Field> } groupByFields
+	 * @returns { ChartSQLjs.Data }
+	 */
+	groupByFields(aggFields, groupByFields){
+		//Create a new array to store the columns
+		/**
+		 * @type {string[]}
+		 */
+		var newColumns = [];
+
+		//Add the group by fields to the newColumns
+		for(var i = 0; i < groupByFields.length; i++){
+			newColumns.push(groupByFields[i].name);
+		}
+
+		var isAggregating = false;
+
+		//Add the aggregation fields to the newColumns
+		for(var i = 0; i < aggFields.length; i++){
+			if (aggFields[i].functionName == null) {
+				newColumns.push(aggFields[i].field.name);
+			} else {
+				// Keep the same column name
+				newColumns.push(aggFields[i].field.name);
+				// columns.push(aggFields[i].functionName + '(' + aggFields[i].field.name + ')');
+				isAggregating = true;
+			}
+		}
+
+		//Create a new object to store the rows
+		/** @type {Record<string, any[]>} */
+		var rowsMap = {};
+		
+		/**
+		 * @type {any[][]}
+		 */
+		var newRows = [];
+
+		//Loop through the rows in the data
+		for(var ii = 0; ii < this.rows.length; ii++){
+
+			//Create a new array to store the row
+			var row = [];
+
+			//Loop through the group by fields
+			for(var jj = 0; jj < groupByFields.length; jj++){
+				var field = groupByFields[jj];
+				var columnIndex = this.columns.indexOf(field.name);
+				row.push(this.rows[ii][columnIndex]);
+			}
+
+			//Create a new object to store the key for the row
+			var key = row.join(',');
+
+			//If the key does not exist in the rows object, create a new array
+			if(!(key in rowsMap)){
+				rowsMap[key] = [];
+			}
+
+			//Loop through the aggregation fields
+			for(var jj = 0; jj < aggFields.length; jj++){
+				var field = aggFields[jj].field;
+				var columnIndex = this.columns.indexOf(field.name);
+				// Check for duplicates
+				if (rowsMap[key].indexOf(this.rows[ii][columnIndex]) == -1) {
+					rowsMap[key].push(this.rows[ii][columnIndex]);
+				}
+			}
+		}
+		
+		if (!isAggregating) {
+			// Create a new array to store the columns
+			/**
+			 * @type {string[]}
+			 */
+			// Loop through the columns
+
+			// for (var i = 0; i < this.columns.length; i++) {
+			// 	// If the column is in the groupByFields, then add it to the newColumns
+			// 	if (groupByFields.map(x => x.name).indexOf(this.columns[i]) != -1) {
+			// 		columns.push(this.columns[i]);
+			// 	}
+
+			// 	// If the column is in the aggFields, then add it to the newColumns
+			// 	if (aggFields.map(x => x.field.name).indexOf(this.columns[i]) != -1) {
+			// 		columns.push(this.columns[i]);
+			// 	}
+			// }
+
+
+			var columnsThatDoesNotExist = [...this.columns].filter(x => newColumns.indexOf(x) == -1);
+			// Clone this.rows with a .map function instead of using a spread operator because we need
+			// entirely new copies of the inner arrays, otherwise it will cause errors when modifying 
+			// newRows because since it will keep a reference to this.rows inner arrays
+			// when we change newRows it will also inadvertently change this.rows too
+			var newRows = this.rows.map(function(arr) {
+				return arr.slice();
+			});
+			for (var i = 0; i < columnsThatDoesNotExist.length; i++) {
+				var columnIndex = this.columns.indexOf(columnsThatDoesNotExist[i]) - i;
+				for (var j = 0; j < newRows.length; j++) {
+					newRows[j].splice(columnIndex);
+				}
+			}
+
+			// Sort newRows by the first groupByFields column value, which can be a string or a number
+			// newRows.sort((a, b) => a[0] - b[0] || a[0].localeCompare(b[0]));
+
+			// Create a new data object
+			var result = new ChartSQLjs.Data({
+				columns: newColumns,
+				rows: newRows
+			});
+			return result;
+		} else {
+			//Loop through the rows object and add the rows to the data object
+			for(var key in rowsMap){
+				// If rowsMap[key] is an array then reduce it according to the function
+				// from aggFunc
+				if (Array.isArray(rowsMap[key])) {
+					/**
+					* @type {any[]}
+					*/
+					let row = [...key.split(',')];
+					for (var i = 0; i < aggFields.length; i++) {
+						if (aggFields[i].functionName == null) {
+							// If no function is provided, then just add the value
+							for (var j = 0; j < rowsMap[key].length; j++) {
+								row.push(rowsMap[key][j]);
+							}
+							continue;
+						// @ts-ignore
+						} else if (aggFields[i].functionName != null && aggFields[i].functionName.toLowerCase() == 'avg') {
+							row.push(rowsMap[key].reduce((acc, val) => acc + val, 0) / rowsMap[key].length);
+							continue;
+						// @ts-ignore
+						} else if (aggFields[i].functionName != null && aggFields[i].functionName.toLowerCase() == 'sum') {
+							row.push(rowsMap[key].reduce((acc, val) => acc + val, 0));
+							continue;
+						// @ts-ignore
+						} else if (aggFields[i].functionName != null && aggFields[i].functionName.toLowerCase() == 'count') {
+							row.push(rowsMap[key].length);
+							continue;
+						// @ts-ignore
+						} else if (aggFields[i].functionName != null && aggFields[i].functionName.toLowerCase() == 'min') {
+							row.push(Math.min(...rowsMap[key]));
+							continue;
+						// @ts-ignore
+						} else if (aggFields[i].functionName != null && aggFields[i].functionName.toLowerCase() == 'max') {
+							row.push(Math.max(...rowsMap[key]));
+							continue;
+						}
+						continue;
+					}
+					newRows.push(row);
+				}
+
+				// if (Array.isArray(rowsMap[key])) {
+				// 	if (aggFields[0].functionName == 'avg') {
+				// 		rows.push([...key.split(','), rowsMap[key].reduce((acc, val) => acc + val, 0) / rowsMap[key].length]);
+				// 		continue;
+				// 	} else if (aggFields[0].functionName == 'sum') {
+				// 		rows.push([...key.split(','), rowsMap[key].reduce((acc, val) => acc + val, 0)]);
+				// 		continue;
+				// 	} else if (aggFields[0].functionName == 'count') {
+				// 		rows.push([...key.split(','), rowsMap[key].length]);
+				// 		continue;
+				// 	} else if (aggFields[0].functionName == 'min') {
+				// 		rows.push([...key.split(','), Math.min(...rowsMap[key])]);
+				// 		continue;
+				// 	} else if (aggFields[0].functionName == 'max') {
+				// 		rows.push([...key.split(','), Math.max(...rowsMap[key])]);
+				// 		continue;
+				// 	}
+				// 	continue;
+				// }
+			}
+			//Create a new data object
+			var data = new ChartSQLjs.Data({
+				columns: newColumns,
+				rows: newRows
+			});
+			return data;
+		}
+
+	}
+
+	/**
+	 * Returns the fields that match the series directive
+	 * @param {string[]} seriesArray
+	 * @returns {Array<ChartSQLjs.Field>}
+	 */
+	getNumericFieldsMatchingSeries(seriesArray){
+		var fields = this.getFields();
+		var numericFields = [];
+		for(var i = 0; i < fields.length; i++){
+			if(fields[i].datatype == 'numeric' && seriesArray.indexOf(fields[i].name.trim()) != -1){
+				numericFields.push(fields[i]);
+			}
+		}
+		return numericFields;
+	}
+
+	/**
+	 * Given the name returns the field object
+	 * @param {string} name
+	 * @returns {ChartSQLjs.Field}
+	 */
+	getFieldByName(name){
+		if (name == null) {
+			throw new Error('Field name cannot be null');
+		}
+
+		var fields = this.getFields();
+		for(var i = 0; i < fields.length; i++){
+			if(fields[i].name == name.trim()){
+				return fields[i];
+			}
+		}
+		throw new Error('Field not found with name: ' + name);
+	}
+
+	/**
+	 * Check if column exists in the data
+	 * @param {string} column
+	 * @returns {boolean}
+	 */
+	columnExists(column){
+		return this.columns.indexOf(column) != -1;
+	}
+	
+	/**
+	 * Given a list of column names returns an array of field objects
+	 * @param {string[]} names
+	 * @returns {ChartSQLjs.Field[]}
+	 */
+	getFieldsByNames(names){
+		var fieldsArray = [];
+		for(var i = 0; i < names.length; i++){
+			fieldsArray.push(this.getFieldByName(names[i]));
+		}
+		return fieldsArray;
 	}
 
 	/**

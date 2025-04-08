@@ -51,6 +51,9 @@ ChartSQLjs.Directives = class Directives {
 		}
 
 		this.directives = directives;
+
+		//Convert the array directives that are present on to arrays
+		
 	}
 
 	/**
@@ -97,10 +100,26 @@ ChartSQLjs.Directives = class Directives {
 	}
 
 	/**
+	 * Length of the directives object
+	 */
+	get length(){
+		return Object.keys(this.directives).length;
+	}
+
+	/**
 	 * Get the value of a directive by key
 	 * @param {string} key - The key of the directive to get
 	 */
 	get(key){
+		// If the directive is an array, convert it to an array separated by commas
+		if(this._arrayDirectives.includes(key)){
+			var arrayDirectiveValue = this.directives[key].split(',');
+			// Trim each value
+			arrayDirectiveValue = arrayDirectiveValue.map(function(/** @type {string} */ value){
+				return value.trim();
+			});
+			return arrayDirectiveValue;
+		}
 		return this.directives[key];
 	}
 }

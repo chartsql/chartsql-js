@@ -10,14 +10,20 @@ ChartSQLjs.Field = class Field {
 	 * @param {String} datatype - The datatype of the field
 	 * @param {String} name - The name of the field
 	 * @param {ChartSQLjs.Data} data - Reference back to the Data object that the field belongs to
+	 * @param {boolean} isSecondarySeries - Whether the field is a secondary series
+	 * @param {String?} groupField - The field that the data is grouped by
+	 * @param {String?} stack - The stack that the field belongs to
 	 */
 	constructor(
 		datatype,
 		name,
-		data
+		data,
+		isSecondarySeries = false,
+		groupField = null,
+		stack = null
 	) {
 
-		const validDatatypes = ['string', 'numeric', 'date', 'datetime', ];
+		const validDatatypes = ['string', 'numeric', 'date', 'datetime'];
 
 		// Check if the datatype is valid
 		if(validDatatypes.indexOf(datatype) == -1){
@@ -34,13 +40,15 @@ ChartSQLjs.Field = class Field {
 			throw new Error('Invalid Data object passed to Field constructor, expected instance of ChartSQL.Data');
 		}
 
-		this.datatype = datatype;
+		this.cleanName = name;
 		this.name = name;
+		this.datatype = datatype;
+		this.type = 'value';
+		this.format = "value";
 		this.#data = data;
-		this.isSecondarySeries = false;
-		this.groupField = null;
-		this.stack = null;
-
+		this.isSecondarySeries = isSecondarySeries;
+		this.groupField = groupField;
+		this.stack = stack;
 	}
 
 	/**

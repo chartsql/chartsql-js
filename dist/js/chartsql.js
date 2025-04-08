@@ -7666,8 +7666,8 @@
       return exp;
     }
     /**
-     * find a “nice�? number approximately equal to x. Round the number if round = true,
-     * take ceiling if round = false. The primary observation is that the “nicest�?
+     * find a “nice” number approximately equal to x. Round the number if round = true,
+     * take ceiling if round = false. The primary observation is that the “nicest”
      * numbers in decimal are 1, 2, and 5, and all power-of-ten multiples of these numbers.
      *
      * See "Nice Numbers for Graph Labels" of Graphic Gems.
@@ -16468,7 +16468,7 @@
      */
     var langZH = {
       time: {
-        month: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '�?月', '�??月', '�??一月', '�??二月'],
+        month: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
         monthAbbr: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
         dayOfWeek: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
         dayOfWeekAbbr: ['日', '一', '二', '三', '四', '五', '六']
@@ -16476,7 +16476,7 @@
       legend: {
         selector: {
           all: '全选',
-          inverse: '�??选'
+          inverse: '反选'
         }
       },
       toolbox: {
@@ -16484,15 +16484,15 @@
           title: {
             rect: '矩形选择',
             polygon: '圈选',
-            lineX: '横�?�选择',
-            lineY: '纵�?�选择',
-            keep: '�?�?选择',
+            lineX: '横向选择',
+            lineY: '纵向选择',
+            keep: '保持选择',
             clear: '清除选择'
           }
         },
         dataView: {
-          title: '数�?�视图',
-          lang: ['数�?�视图', '关闭', '刷新']
+          title: '数据视图',
+          lang: ['数据视图', '关闭', '刷新']
         },
         dataZoom: {
           title: {
@@ -16502,18 +16502,18 @@
         },
         magicType: {
           title: {
-            line: '切�?�为折线图',
-            bar: '切�?�为柱状图',
-            stack: '切�?�为堆�?�',
-            tiled: '切�?�为平铺'
+            line: '切换为折线图',
+            bar: '切换为柱状图',
+            stack: '切换为堆叠',
+            tiled: '切换为平铺'
           }
         },
         restore: {
           title: '还原'
         },
         saveAsImage: {
-          title: '�?存为图片',
-          lang: ['�?�键�?�存为图片']
+          title: '保存为图片',
+          lang: ['右键另存为图片']
         }
       },
       series: {
@@ -16531,20 +16531,20 @@
           k: 'K线图',
           heatmap: '热力图',
           map: '地图',
-          parallel: '平行�??标图',
+          parallel: '平行坐标图',
           lines: '线图',
           graph: '关系图',
           sankey: '桑基图',
-          funnel: '�?斗图',
+          funnel: '漏斗图',
           gauge: '仪表盘图',
           pictorialBar: '象形柱图',
-          themeRiver: '主题河�?图',
+          themeRiver: '主题河流图',
           sunburst: '旭日图'
         }
       },
       aria: {
         general: {
-          withTitle: '这是一个关于“{title}�?的图表。',
+          withTitle: '这是一个关于“{title}”的图表。',
           withoutTitle: '这是一个图表，'
         },
         series: {
@@ -16554,7 +16554,7 @@
             withoutName: '图表类型是{seriesType}。'
           },
           multiple: {
-            prefix: '它由{seriesCount}个图表系列组�?。',
+            prefix: '它由{seriesCount}个图表系列组成。',
             withName: '第{seriesId}个系列是一个表示{seriesName}的{seriesType}，',
             withoutName: '第{seriesId}个系列是一个{seriesType}，',
             separator: {
@@ -16564,9 +16564,9 @@
           }
         },
         data: {
-          allData: '其数�?�是——',
-          partialData: '其中，�?{displayCnt}项是——',
-          withName: '{name}的数�?�是{value}',
+          allData: '其数据是——',
+          partialData: '其中，前{displayCnt}项是——',
+          withName: '{name}的数据是{value}',
           withoutName: '{value}',
           separator: {
             middle: '，',
@@ -37203,7 +37203,7 @@
 
         switch (cmd) {
           case CMD$3.M:
-            // moveTo 命令�?新创建一个新的 subpath, 并且更新新的起点
+            // moveTo 命令重新创建一个新的 subpath, 并且更新新的起点
             // 在 closePath 的时候使用
             x0 = data[i++];
             y0 = data[i++];
@@ -37241,13 +37241,13 @@
             i += 1;
             var anticlockwise = !!(1 - data[i++]);
             x1 = Math.cos(theta) * rx + cx;
-            y1 = Math.sin(theta) * ry + cy; // �?是直接使用 arc 命令
+            y1 = Math.sin(theta) * ry + cy; // 不是直接使用 arc 命令
 
             if (i <= 1) {
               // 第一个命令起点还未定义
               x0 = x1;
               y0 = y1;
-            } // zr 使用scale�?�模拟椭圆, 这里也对x�?�一定的缩放
+            } // zr 使用scale来模拟椭圆, 这里也对x做一定的缩放
 
 
             var _x = (x - cx) * ry / rx + cx;
@@ -45224,7 +45224,7 @@
               r: roseType ? NaN : r
             });
             return;
-          } // FIXME 兼容 2.0 但是 roseType 是 area 的时候�?是这样？
+          } // FIXME 兼容 2.0 但是 roseType 是 area 的时候才是这样？
 
 
           if (roseType !== 'area') {
@@ -46311,16 +46311,16 @@
         // 默认顺时针
         clockwise: true,
         startAngle: 90,
-        // 最�?角度改为0
+        // 最小角度改为0
         minAngle: 0,
         // If the angle of a sector less than `minShowLabelAngle`,
         // the label will not be displayed.
         minShowLabelAngle: 0,
-        // 选中时扇区�??移�?
+        // 选中时扇区偏移量
         selectedOffset: 10,
-        // 选择模�?，默认关闭，�?�选single，multiple
+        // 选择模式，默认关闭，可选single，multiple
         // selectedMode: false,
-        // �?��?格尔玫瑰图模�?，'radius'（�?�径） | 'area'（�?�积）
+        // 南丁格尔玫瑰图模式，'radius'（半径） | 'area'（面积）
         // roseType: null,
         percentPrecision: 2,
         // If still show when all data zero.
@@ -46348,9 +46348,9 @@
           // Works only position is 'outer' and alignTo is not 'edge'.
           bleedMargin: 10,
           // Distance between text and label line.
-          distanceToLabelLine: 5 // formatter: 标签文本格�?器，�?� tooltip.formatter，�?支�?异步回调
-          // 默认使用全局文本样�?，详�? textStyle
-          // distance: 当position为inner时有效，为label�?置到圆心的�?离与圆�?�径(环状图为内外�?�径和)的比例系数
+          distanceToLabelLine: 5 // formatter: 标签文本格式器，同 tooltip.formatter，不支持异步回调
+          // 默认使用全局文本样式，详见 textStyle
+          // distance: 当position为inner时有效，为label位置到圆心的距离与圆半径(环状图为内外半径和)的比例系数
 
         },
         // Enabled when label.normal.position is 'outer'
@@ -46364,7 +46364,7 @@
           minTurnAngle: 90,
           maxSurfaceAngle: 90,
           lineStyle: {
-            // color: �?�异,
+            // color: 各异,
             width: 1,
             type: 'solid'
           }
@@ -46493,7 +46493,7 @@
         largeThreshold: 2000,
         // cursor: null,
         itemStyle: {
-          opacity: 0.8 // color: �?�异
+          opacity: 0.8 // color: 各异
 
         },
         emphasis: {
@@ -51762,7 +51762,7 @@
     // }
 
     var geoCoord = [126, 25];
-    var nanhaiName = '�?�海诸岛';
+    var nanhaiName = '南海诸岛';
     var points$1 = [[[0, 3.5], [7, 11.2], [15, 11.9], [30, 7], [42, 0.7], [52, 0.7], [56, 7.7], [59, 0.7], [64, 0.7], [64, 0], [5, 0], [0, 3.5]], [[13, 16.1], [19, 14.7], [16, 21.7], [11, 23.1], [13, 16.1]], [[12, 32.2], [14, 38.5], [15, 38.5], [13, 32.2], [12, 32.2]], [[16, 47.6], [12, 53.2], [13, 53.2], [18, 47.6], [16, 47.6]], [[6, 64.4], [8, 70], [9, 70], [8, 64.4], [6, 64.4]], [[23, 82.6], [29, 79.8], [30, 79.8], [25, 82.6], [23, 82.6]], [[37, 70.7], [43, 62.3], [44, 62.3], [39, 70.7], [37, 70.7]], [[48, 51.1], [51, 45.5], [53, 45.5], [50, 51.1], [48, 51.1]], [[51, 35], [51, 28.7], [53, 28.7], [53, 35], [51, 35]], [[52, 22.4], [55, 17.5], [56, 17.5], [53, 22.4], [52, 22.4]], [[58, 12.6], [62, 7], [63, 7], [60, 12.6], [58, 12.6]], [[0, 3.5], [0, 93.1], [64, 93.1], [64, 0], [63, 0], [63, 92.4], [1, 92.4], [1, 3.5], [0, 3.5]]];
 
     for (var i = 0; i < points$1.length; i++) {
@@ -51835,7 +51835,7 @@
     * under the License.
     */
     var coordsOffsetMap = {
-      '�?�海诸岛': [32, 80],
+      '南海诸岛': [32, 80],
       // 全国
       '广东': [0, -10],
       '香港': [10, 5],
@@ -51904,7 +51904,7 @@
     // let geoCoord = [126, 25];
     var points$2 = [[[123.45165252685547, 25.73527164402261], [123.49731445312499, 25.73527164402261], [123.49731445312499, 25.750734064600884], [123.45165252685547, 25.750734064600884], [123.45165252685547, 25.73527164402261]]];
     function fixDiaoyuIsland(mapType, region) {
-      if (mapType === 'china' && region.name === '�?�湾') {
+      if (mapType === 'china' && region.name === '台湾') {
         region.geometries.push({
           type: 'polygon',
           exterior: points$2[0]
@@ -53115,9 +53115,9 @@
       MapSeries.dependencies = ['geo'];
       MapSeries.layoutMode = 'box';
       MapSeries.defaultOption = {
-        // 一级层�?�
+        // 一级层叠
         // zlevel: 0,
-        // 二级层�?�
+        // 二级层叠
         z: 2,
         coordinateSystem: 'geo',
         // map should be explicitly specified since ec3.
@@ -56551,7 +56551,7 @@
         squareRatio: 0.5 * (1 + Math.sqrt(5)),
         leafDepth: null,
         drillDownIcon: '▶',
-        // to align specialized icon. ▷▶�?��??▼✚
+        // to align specialized icon. ▷▶❒❐▼✚
         zoomToNodeRatio: 0.32 * 0.32,
         roam: true,
         nodeClick: 'zoomToNode',
@@ -58671,7 +58671,7 @@
         var treeRoot = seriesModel.getData().tree.root;
         treeRoot.setLayout(calculateRootPosition(layoutInfo, rootRect, targetInfo), true);
         seriesModel.setLayoutInfo(layoutInfo); // FIXME
-        // 现在没有clip功能，暂时�?�ec高宽。
+        // 现在没有clip功能，暂时取ec高宽。
 
         prunning(treeRoot, // Transform to base element coordinate system.
         new BoundingRect(-layoutInfo.x, -layoutInfo.y, ecWidth, ecHeight), viewAbovePath, viewRoot, 0);
@@ -62558,15 +62558,15 @@
         startAngle: 225,
         endAngle: -45,
         clockwise: true,
-        // 最�?值
+        // 最小值
         min: 0,
         // 最大值
         max: 100,
         // 分割段数，默认为10
         splitNumber: 10,
-        // �??标轴线
+        // 坐标轴线
         axisLine: {
-          // 默认显示，属性show控制显示与�?�
+          // 默认显示，属性show控制显示与否
           show: true,
           roundCap: false,
           lineStyle: {
@@ -62574,9 +62574,9 @@
             width: 10
           }
         },
-        // �??标轴线
+        // 坐标轴线
         progress: {
-          // 默认显示，属性show控制显示与�?�
+          // 默认显示，属性show控制显示与否
           show: false,
           overlap: true,
           width: 10,
@@ -62585,28 +62585,28 @@
         },
         // 分隔线
         splitLine: {
-          // 默认显示，属性show控制显示与�?�
+          // 默认显示，属性show控制显示与否
           show: true,
           // 属性length控制线长
           length: 10,
           distance: 10,
-          // 属性lineStyle（详�?lineStyle）控制线�?�样�?
+          // 属性lineStyle（详见lineStyle）控制线条样式
           lineStyle: {
             color: '#63677A',
             width: 3,
             type: 'solid'
           }
         },
-        // �??标轴�?标记
+        // 坐标轴小标记
         axisTick: {
-          // 属性show控制显示与�?�，默认�?显示
+          // 属性show控制显示与否，默认不显示
           show: true,
-          // �?份split细分多少段
+          // 每份split细分多少段
           splitNumber: 5,
           // 属性length控制线长
           length: 6,
           distance: 10,
-          // 属性lineStyle控制线�?�样�?
+          // 属性lineStyle控制线条样式
           lineStyle: {
             color: '#63677A',
             width: 1,
@@ -62645,9 +62645,9 @@
         },
         title: {
           show: true,
-          // x, y，�?��?px
+          // x, y，单位px
           offsetCenter: [0, '20%'],
-          // 其余属性默认使用全局文本样�?，详�?TEXTSTYLE
+          // 其余属性默认使用全局文本样式，详见TEXTSTYLE
           color: '#464646',
           fontSize: 16,
           valueAnimation: false
@@ -62660,10 +62660,10 @@
           width: 100,
           height: null,
           padding: [5, 10],
-          // x, y，�?��?px
+          // x, y，单位px
           offsetCenter: [0, '40%'],
           // formatter: null,
-          // 其余属性默认使用全局文本样�?，详�?TEXTSTYLE
+          // 其余属性默认使用全局文本样式，详见TEXTSTYLE
           color: '#464646',
           fontSize: 30,
           fontWeight: 'bold',
@@ -62907,7 +62907,7 @@
 
       FunnelSeriesModel.type = 'series.funnel';
       FunnelSeriesModel.defaultOption = {
-        // zlevel: 0,                  // 一级层�?�
+        // zlevel: 0,                  // 一级层叠
         z: 2,
         legendHoverLink: true,
         colorBy: 'data',
@@ -62917,7 +62917,7 @@
         bottom: 60,
         // width: {totalWidth} - left - right,
         // height: {totalHeight} - top - bottom,
-        // 默认�?�数�?�最�?最大值
+        // 默认取数据最小最大值
         // min: 0,
         // max: 100,
         minSize: '0%',
@@ -62928,19 +62928,19 @@
         funnelAlign: 'center',
         label: {
           show: true,
-          position: 'outer' // formatter: 标签文本格�?器，�?�Tooltip.formatter，�?支�?异步回调
+          position: 'outer' // formatter: 标签文本格式器，同Tooltip.formatter，不支持异步回调
 
         },
         labelLine: {
           show: true,
           length: 20,
           lineStyle: {
-            // color: �?�异,
+            // color: 各异,
             width: 1
           }
         },
         itemStyle: {
-          // color: �?�异,
+          // color: 各异,
           borderColor: '#fff',
           borderWidth: 1
         },
@@ -68252,7 +68252,7 @@
         // Geo coordinate system
         // geoIndex: 0,
         // symbol: null,        // 图形类型
-        symbolSize: 10 // 图形大�?，�?�宽（�?�径）�?�数，当图形为方�?�或�?�形则总宽度为symbolSize * 2
+        symbolSize: 10 // 图形大小，半宽（半径）参数，当图形为方向或菱形则总宽度为symbolSize * 2
         // symbolRotate: null,  // 图形旋转控制
         // itemStyle: {
         //     opacity: 1
@@ -69498,7 +69498,7 @@
         label: {
           show: false,
           position: 'end' // distance: 5,
-          // formatter: 标签文本格�?器，�?�Tooltip.formatter，�?支�?异步回调
+          // formatter: 标签文本格式器，同Tooltip.formatter，不支持异步回调
 
         },
         lineStyle: {
@@ -71875,7 +71875,7 @@
         // 默认顺时针
         clockwise: true,
         startAngle: 90,
-        // 最�?角度改为0
+        // 最小角度改为0
         minAngle: 0,
         // If still show when all data zero.
         stillShowZeroSum: true,
@@ -85035,7 +85035,7 @@
        */
 
       TimelineModel.defaultOption = {
-        // zlevel: 0,                  // 一级层�?�
+        // zlevel: 0,                  // 一级层叠
         z: 4,
         show: true,
         axisType: 'time',
@@ -85105,7 +85105,7 @@
           interval: 'auto',
           rotate: 0,
           // formatter: null,
-          // 其余属性默认使用全局文本样�?，详�?TEXTSTYLE
+          // 其余属性默认使用全局文本样式，详见TEXTSTYLE
           color: '#A4B1D7'
         },
         itemStyle: {
@@ -85150,7 +85150,7 @@
         emphasis: {
           label: {
             show: true,
-            // 其余属性默认使用全局文本样�?，详�?TEXTSTYLE
+            // 其余属性默认使用全局文本样式，详见TEXTSTYLE
             color: '#6f778d'
           },
           itemStyle: {
@@ -86562,7 +86562,7 @@
             }
 
             if (isFunction(symbolSize)) {
-              // FIXME 这里�?兼容 ECharts 2.x，2.x 貌似�?�数是整个数�?�？
+              // FIXME 这里不兼容 ECharts 2.x，2.x 貌似参数是整个数据？
               symbolSize = symbolSize(rawIdx, dataParams);
             }
 
@@ -90077,7 +90077,7 @@
         var handleLabels = displaybles.handleLabels;
         var orient = this._orient;
         var labelTexts = ['', '']; // FIXME
-        // date型，支�?formatter，autoformatter（ec2 date.getAutoFormatter）
+        // date型，支持formatter，autoformatter（ec2 date.getAutoFormatter）
 
         if (dataZoomModel.get('showDetail')) {
           var axisProxy = dataZoomModel.findRepresentativeAxisProxy();
@@ -90321,7 +90321,7 @@
 
     function getOtherDim(thisDim) {
       // FIXME
-      // 这个逻辑和getOtherAxis里一致，但是写在这里是�?��?好
+      // 这个逻辑和getOtherAxis里一致，但是写在这里是否不好
       var map = {
         x: 'y',
         y: 'x',
@@ -90803,7 +90803,7 @@
         inactiveColor: '#aaa',
         borderWidth: 0,
         padding: 5,
-        // 接�?�数组分别设定上�?�下左边�?，�?�css
+        // 接受数组分别设定上右下左边距，同css
         textGap: 10,
         precision: 0,
         textStyle: {
@@ -92542,8 +92542,8 @@
       categories: function (outPieceList) {
         var thisOption = this.option;
         each(thisOption.categories, function (cate) {
-          // FIXME category模�?也使用pieceList，但在visualMapping中�?是使用pieceList。
-          // 是�?�改一致。
+          // FIXME category模式也使用pieceList，但在visualMapping中不是使用pieceList。
+          // 是否改一致。
           outPieceList.push({
             text: this.formatValueText(cate, true),
             value: cate
@@ -95749,7 +95749,9 @@ var ChartSQLjs = {};
  */
 ChartSQLjs.AutoChartType = {
 	COLUMN: "column",
+	LINE: "line",
 	PIE: "pie",
+	AREA: "line",
 	BAR: "bar",
 	INDETERMINATE: "indeterminate"
 };
@@ -96312,7 +96314,42 @@ ChartSQLjs.SQLScript = class SQLScript {
 	}
 
 }
-/**
+ChartSQLjs.Aggfunc = class Aggfunc {
+	/**
+	 * Constructor for the Aggfunc class which represents an aggregation function that can be applied to a field
+	 * @param {String?} functionName - The name of the Aggfunc
+	 * @param {ChartSQLjs.Field} field
+	 */
+	constructor(
+		functionName,
+		field
+	) {
+
+		const validFunctionNames = ['avg', 'sum', 'count', 'min', 'max'];
+
+		if (functionName != null) {
+			functionName = functionName.toLowerCase();
+		}
+
+		// Check if the datatype is valid
+		if(functionName != null && validFunctionNames.indexOf(functionName) == -1){
+			throw new Error('Invalid function name passed to Aggfunc constructor. Must be one of: ' + validFunctionNames.join(', '));
+		}
+
+		// Check if the name is a string
+		if(functionName != null && typeof functionName !== 'string'){
+			throw new Error('Invalid functionName passed to Aggfunc constructor. Must be a string');
+		}
+
+		//Should be an instance of the class Data
+		if (!(field instanceof ChartSQLjs.Field)) {
+			throw new Error('Invalid field object passed to Aggfunc constructor, expected instance of ChartSQLjs.Field');
+		}
+
+		this.functionName = functionName;
+		this.field = field;
+	}
+}/**
  * ChartSQL Chart class
  * @param {Object} global - The global object
  * @return {Object} ChartSQL.Chart - The Chart class *
@@ -96362,9 +96399,28 @@ ChartSQLjs.Chart = class Chart {
 		if(this.directives.isAutoMode){
 
 			var autoChartType = this.data.detectAutoChartType();
-
 			switch(autoChartType){
 
+				case 'scatter':
+					var seriesFields = this.data.allFieldsOfType("numeric");
+
+					var xField = new ChartSQLjs.Field('numeric', seriesFields[0].name, this.data);
+					var yField = new ChartSQLjs.Field('numeric', seriesFields[1].name, this.data);
+
+					var option = new ChartSQLjs.chartoptions.ScatterOption(
+						this.directives,
+						xField,
+						yField
+					).option;
+
+					break;
+				case 'bubble':
+					var option = new ChartSQLjs.chartoptions.BubbleOption(
+						this.directives,
+						this.data.getFields()
+					).option;
+
+					break;
 				case 'column':
 					var fieldsByType = this.data.getFieldsByType();
 					var primaryCategoryField = fieldsByType.string[0];
@@ -96378,8 +96434,6 @@ ChartSQLjs.Chart = class Chart {
 					).option;
 
 					break;
-				case 'line':
-
 				case 'grouped-column':
 
 					var fieldsByType = this.data.getFieldsByType();
@@ -96408,9 +96462,36 @@ ChartSQLjs.Chart = class Chart {
 					).option;
 
 				break;
-
 				case 'pie':
-					option.type = 'pie';
+					var categoryData = this.data.allFieldsOfType("string");
+					var valuesFields = this.data.allFieldsOfType("numeric");
+					var fieldsByType = this.data.getFieldsByType();
+					var primaryCategoryField = fieldsByType.string[0];
+
+					var option = new ChartSQLjs.chartoptions.PieOption(
+						this.directives,
+						primaryCategoryField,
+						categoryData,
+						valuesFields
+					).option;
+
+					break;
+
+				case 'heatmap':
+					var stringFields = this.data.allFieldsOfType("string");
+					var numericFields = this.data.allFieldsOfType("numeric");
+
+					var xField = new ChartSQLjs.Field('string', stringFields[0].name, this.data);
+					var yField = new ChartSQLjs.Field('string', stringFields[1].name, this.data);
+					var valueField = new ChartSQLjs.Field('numeric', numericFields[0].name, this.data);
+
+					var option = new ChartSQLjs.chartoptions.HeatmapOption(
+						this.directives,
+						xField,
+						yField,
+						valueField
+					).option;
+
 					break;
 			}
 
@@ -96418,21 +96499,336 @@ ChartSQLjs.Chart = class Chart {
 
 			var chartType = this.directives.get('chart');
 
-			if(this.directives.keyExists("category")){
-				throw new Error('Series directive not yet fully implemented');
+			var categoryData = this.data.allFieldsOfType("string");
+			var primaryCategoryField = this.data.firstFieldOfTypes(["string", "date", "datetime", "numeric"]);
+			var seriesFields = this.data.allFieldsOfType("numeric");
+			var stringFields = this.data.allFieldsOfType("string");
+			var numericFields = this.data.allFieldsOfType("numeric");
+
+			if(this.directives.keyExists("groups")){
+				// var groups = this.directives.get('groups');
+				// for (var group of groups) {
+				// 	if (!this.data.columns.includes(group.toLowerCase().trim())) {
+				// 		throw(`Column '${group}' on @groups value not found (available columns: ${this.data.columns}#)`);
+				// 	}
+				// }
+
+				// var groupByFields = this.data.getFieldsByNames(groups);
+				// var aggFuncs = [];
+				// if (this.directives.keyExists("series")) {
+				// 	var seriesDirective = this.directives.get("series");
+
+				// 	// if(this.directives.keyExists("secondary-series")){
+				// 	// 	seriesDirective.merge(this.directives.get("secondary-series"));
+				// 	// }
+
+				// 	aggFuncs = seriesDirective.map((/** @type {string} */ s) => {
+				// 		var aggregateFunction = 'sum';
+				// 		var fieldCleanName = s;
+				// 		if (s.includes('sum(') || s.includes('avg(') || s.includes('count(') || s.includes('min(') || s.includes('max(')) {
+				// 			aggregateFunction = s.split('(')[0];
+				// 			fieldCleanName = s.split('(')[1].split(')')[0];
+				// 		}
+				// 		return new ChartSQLjs.Aggfunc(
+				// 			aggregateFunction, this.data.getFieldByName(fieldCleanName.trim())
+				// 		)
+				// 	});
+				// } else {
+				// 	var numericFields = this.data.allFieldsOfType("numeric");
+				// 	if (numericFields.length > 0) {
+				// 		// Assistive Mode should select the left most numeric column in this case for the series.
+				// 		aggFuncs = [new ChartSQLjs.Aggfunc('sum', numericFields[0])];
+				// 	} else {
+				// 		aggFuncs = [];
+				// 	}
+				// }
+				// var groupByFieldsData = this.data.groupByFields(aggFuncs, groupByFields);
+				
+				// categoryData = groupByFieldsData.allFieldsOfType("string");
+				// if(this.directives.keyExists("category")){
+				// 	var categoryName = this.directives.get('category');
+				// 	primaryCategoryField = groupByFieldsData.getFieldByName(categoryName);
+				// } else { 
+				// 	primaryCategoryField = groupByFieldsData.firstFieldOfTypes(["string", "date", "datetime", "numeric"]);
+				// }
+				// seriesFields = groupByFieldsData.allFieldsOfType("numeric");
+				// stringFields = groupByFieldsData.allFieldsOfType("string");
+				// numericFields = groupByFieldsData.allFieldsOfType("numeric");
+
+				var categoryName = this.directives.get("groups")[0];
+				var primaryCategoryData = this.data.selectDistinct(categoryName);
+				var primaryCategoryField = primaryCategoryData.getFieldByName(categoryName);
+				var groupsDirective = this.directives.get("groups");
+				var seriesValues = [];
+
+				if (this.directives.keyExists("series") && !(this.directives.get("series") == null) && !(this.directives.get("series") == [])) {
+					seriesValues = this.directives.get("series");
+				} else {
+					// Assistive Mode should select the left most numeric column in this case for the series.
+					var firstNumericField = this.data.firstFieldOfTypes(["numeric"]);
+					if (firstNumericField != null) {
+						seriesValues = [firstNumericField.name];
+					} else {
+						seriesValues = [];
+					}
+				}
+
+				var secondarySeriesValues = [];
+				if(this.directives.keyExists("secondary-series")){
+					secondarySeriesValues = this.directives.get("secondary-series");
+				} else {
+					secondarySeriesValues = [];
+				}
+
+				var allSeriesValues = [...seriesValues, ...secondarySeriesValues];
+
+				if(groupsDirective.length == 1){
+
+					var workingField = groupsDirective[0];
+					if(workingField == categoryName){
+						groupByData = this.data.selectDistinct(workingField);
+
+						categoryData = [this.data.getFieldByName(workingField)];
+
+						atValue = allSeriesValues[0];
+
+						var aggFunc = "sum";
+
+						if(atValue.includes("avg(")){
+							aggFunc = "avg";
+						} else if(atValue.includes("sum(")){
+							aggFunc = "sum";
+						} else if(atValue.includes("count(")){
+							aggFunc = "count";
+						} else if(atValue.includes("min(")){
+							aggFunc = "min";
+						} else if(atValue.includes("max(")){
+							aggFunc = "max";
+						}
+
+						if(atValue.includes("avg(") || atValue.includes("sum(") || atValue.includes("count(") || atValue.includes("min(") || atValue.includes("max(")){
+							isAggregating = true;
+							atValue = atValue.split(")")[0].split("(")[1];
+						}
+
+						var data = this.data.groupByFields([new ChartSQLjs.Aggfunc(
+							aggFunc, this.data.getFieldByName(atValue.trim())
+						)], categoryData);
+
+						seriesFields = [];
+
+						var field = new ChartSQLjs.Field(
+							'numeric',
+							atValue,
+							data,
+							false,
+							workingField,
+							null
+						);
+
+						seriesFields.push(field);
+
+					} else {
+						console.error("Error: The first groups field must be the category field")
+						throw("The first groups field must be the category field");
+					}
+				} else if(groupsDirective.length == 2){
+					var groupBy1 = groupsDirective[0];
+					var groupBy2 = groupsDirective[1];
+
+					if(groupBy1 != categoryName){
+						console.error("Error: The first groups field must be the category field")
+						throw("The first groups field must be the category field");
+					}
+
+					// First we are going to get the distinct values for groupBy1
+					// these will be our category values
+
+					// This is getting the DISTINCT values for the groupBy1
+					// TO DO: Create a function called getDistinctData() that will return the distinct values
+					// of the data for the given field
+					// query name="groupByData" dbtype="query" {
+					// 	echo("
+					// 	SELECT *
+					// 	FROM this.data
+					// 	GROUP BY #groupBy1#
+					// 	ORDER BY _sortId ASC
+					// 	")
+					// }
+
+					var groupByData = this.data.selectDistinct(groupBy1.trim());
+					categoryData = [groupByData.getFieldByName(groupBy1.trim())];
+
+					//Now get all of the distinct values for groupBy2
+					// query name="groupByData2" dbtype="query" {
+					// 	echo("
+					// 	SELECT *
+					// 	FROM this.data
+					// 	GROUP BY #groupBy2#
+					// 	ORDER BY _sortId ASC
+					// 	")
+					// }
+					var groupByData2 = this.data.selectDistinct(groupBy2.trim());
+
+					//Create our series, one for each unique grouypBy2 value
+					seriesFields = [];
+					var valuesCount = 0;
+					for(var atValue of allSeriesValues){
+
+						// Increment the values count that we will used to get the
+						// type of the series if we are a combo chart
+						valuesCount++;
+						var originalAtValue = atValue;
+
+						var isStacking = false;
+						var isAggregating = false;
+
+						var aggFunc = "sum";
+
+						if(atValue.includes("stack(")){
+							isStacking = true;
+							var atValue = atValue.replace("stack(", "");
+							var atValue = atValue.replace(")", "");
+						}
+						
+						if(atValue.includes("avg(")){
+							aggFunc = "avg";
+						} else if(atValue.includes("sum(")){
+							aggFunc = "sum";
+						} else if(atValue.includes("count(")){
+							aggFunc = "count";
+						} else if(atValue.includes("min(")){
+							aggFunc = "min";
+						} else if(atValue.includes("max(")){
+							aggFunc = "max";
+						}
+
+						if(atValue.includes("avg(") || atValue.includes("sum(") || atValue.includes("count(") || atValue.includes("min(") || atValue.includes("max(")){
+							isAggregating = true;
+							atValue = atValue.split(")")[0].split("(")[1];
+						}
+
+						if(isAggregating){
+							var valuesOut = this.data.groupByFields([new ChartSQLjs.Aggfunc(
+								aggFunc.toLowerCase(), this.data.getFieldByName(atValue.trim())
+							)], [...categoryData]);
+
+							if(secondarySeriesValues.includes(originalAtValue)){
+								var isSecondarySeries = true;
+							} else {
+								var isSecondarySeries = false;
+							}
+							
+							var field = new ChartSQLjs.Field(
+								'numeric',
+								atValue,
+								valuesOut,
+								isSecondarySeries,
+								null,
+								null
+							);
+
+							/** @type {Record<string, string>} */
+							var seriesToSeriesTypesMap = {};
+							this.directives.get("series").forEach((/** @type {string} */ s, /** @type {number} */ i) => {
+								seriesToSeriesTypesMap[s] = this.directives.get("series-types")[i];
+							});
+							
+							if(this.directives.keyExists("series-types")){
+								field.type = seriesToSeriesTypesMap[originalAtValue];
+							}
+
+							seriesFields.push(field);
+						} else {
+							var valuesOut = this.data.groupByFields([new ChartSQLjs.Aggfunc(
+								null, this.data.getFieldByName(atValue.trim())
+							)], [...categoryData, this.data.getFieldByName(groupBy2.trim())]);
+							for(var indexRow in groupByData2.rows){
+								if(seriesValues.length > 1){
+									var name = `${groupByData2.rows[indexRow][0]} ${atValue}`;
+								} else {
+									var name = `${groupByData2.rows[indexRow][0]}`;
+								}
+
+								if(secondarySeriesValues.includes(atValue)){
+									var isSecondarySeries = true;
+								} else {
+									var isSecondarySeries = false;
+								}
+
+								var data = new ChartSQLjs.Data({
+									columns: [name],
+									rows: valuesOut.getValuesFromColumnWhere(atValue.trim(), groupBy2.trim(), groupByData2.rows[indexRow][0]).map((/** @type {number} */ value) => {
+										return [value];
+									})
+								});
+
+								var field = new ChartSQLjs.Field(
+									'numeric',
+									name,
+									data,
+									isSecondarySeries,
+									groupBy2.trim(),
+									isStacking ? atValue : null
+								);
+
+								/** @type {Record<string, string>} */
+								var seriesToSeriesTypesMap = {};
+								this.directives.get("series").forEach((/** @type {string} */ s, /** @type {number} */ i) => {
+									seriesToSeriesTypesMap[s] = this.directives.get("series-types")[i];
+								});
+								
+								if(this.directives.keyExists("series-types")){
+									field.type = seriesToSeriesTypesMap[atValue];
+								}
+
+								seriesFields.push(field);
+							}
+						}
+					}
+				} else {
+					throw("Not yet handled more than 2 group by");
+				}
 			} else {
-				var primaryCategoryField = this.data.firstFieldOfTypes(["string", "date", "datetime", "numeric"]);
+				if(this.directives.keyExists("category")){
+					var categoryName = this.directives.get('category');
+					var primaryCategoryField = this.data.getFieldByName(categoryName);
+				}
+	
+				//get the series fields
+				if(this.directives.keyExists("series")){
+					for (var serie of this.directives.get("series")) {
+						if (!this.data.columns.includes(serie.toLowerCase().trim())) {
+							throw(`Column '${serie}' on @series value not found (available columns: ${this.data.columns}#)`);
+						}
+					}
+					var seriesFields = this.data.getNumericFieldsMatchingSeries(this.directives.get("series"));
+				}
+
+				if(this.directives.keyExists("series-types")){
+					var seriesTypes = this.directives.get("series-types");
+					
+					for (var i = 0; i < seriesFields.length; i++) {
+						if (i >= seriesTypes.length) {
+							seriesFields[i].type = seriesTypes[seriesTypes.length - 1];
+						} else {
+							seriesFields[i].type = seriesTypes[i];
+						}
+					}
+				}
 			}
 
-			//get the series fields
-			if(this.directives.keyExists("series")){
-				//Not yet fully implemented
-				throw new Error('Series directive not yet fully implemented');
-				// var seriesFields = this.data.allFieldsOfType("numeric");
-			} else {
-				var seriesFields = this.data.allFieldsOfType("numeric");
-			}
+			if (this.directives.keyExists("formats"))  {
+				var formats = this.directives.get("formats");
+				for (var i = 0; i < seriesFields.length; i++) {
+					if (seriesFields[i].type != "value") {
+						continue;
+					}
 
+					var format = ChartSQLjs.Chart.matchOrdinalPosition(i, formats);
+					seriesFields[i].format = format;
+				}
+			}
 
 			switch(chartType){
 				case 'bar':
@@ -96444,12 +96840,73 @@ ChartSQLjs.Chart = class Chart {
 					).option;
 
 					break;
-
 				case 'line':
-					option.type = 'line';
+					var option = new ChartSQLjs.chartoptions.LineOption(
+						this.directives,
+						primaryCategoryField,
+						seriesFields
+					).option;
 					break;
-				case 'pie':
-					option.type = 'pie';
+				case 'area':
+					var option = new ChartSQLjs.chartoptions.AreaOption(
+						this.directives,
+						primaryCategoryField,
+						seriesFields
+					).option;
+					break;
+				case 'combo': 
+					var option = new ChartSQLjs.chartoptions.ComboOption(
+						this.directives,
+						primaryCategoryField,
+						categoryData,
+						seriesFields
+					).option;
+
+					break;
+				case 'scatter':
+					var xField = new ChartSQLjs.Field('numeric', seriesFields[0].name, this.data);
+					var yField = new ChartSQLjs.Field('numeric', seriesFields[1].name, this.data);
+					var option = new ChartSQLjs.chartoptions.ScatterOption(
+						this.directives,
+						xField,
+						yField
+					).option;
+					break;
+				case 'bubble':
+					var option = new ChartSQLjs.chartoptions.BubbleOption(
+						this.directives,
+						this.data.getFields()
+					).option;
+					break;
+				case 'gauge':
+					var option = new ChartSQLjs.chartoptions.GaugeOption(
+						this.directives,
+						primaryCategoryField,
+						categoryData,
+						seriesFields
+					).option;
+					break;
+				case 'heatmap': 
+					var xField = new ChartSQLjs.Field('string', stringFields[0].name, this.data);
+					var yField = new ChartSQLjs.Field('string', stringFields[1].name, this.data);
+					var valueField = new ChartSQLjs.Field('numeric', numericFields[0].name, this.data);
+
+					var option = new ChartSQLjs.chartoptions.HeatmapOption(
+						this.directives,
+						xField,
+						yField,
+						valueField
+					).option;
+
+					break;
+				case 'pie': 
+					var option = new ChartSQLjs.chartoptions.PieOption(
+						this.directives,
+						primaryCategoryField,
+						categoryData,
+						seriesFields
+					).option;
+
 					break;
 			}
 
@@ -96457,21 +96914,202 @@ ChartSQLjs.Chart = class Chart {
 
 		// When we have a time component, we need to stitch the date and the value together in the
 		// series data as eCharts expects time series to be in the format [[date,value],[date,value]]
-		if(option.xAxis && option.xAxis[0].type){
-			if(option.xAxis[0].type == "time"){
+		if(option.xAxis && (
+			Object.hasOwn(option.xAxis, 'type')
+			|| (
+				option.xAxis.length >= 0
+				&& Object.hasOwn(option.xAxis[0], 'type')
+				&& option.xAxis[0].type
+			)
+		)) {
+			var xAxisType = Object.hasOwn(option.xAxis, 'type') ? option.xAxis.type : option.xAxis[0].type;
+			var xAxisData = Object.hasOwn(option.xAxis, 'data') ? option.xAxis.data : option.xAxis[0].data;
+			if(xAxisType == "time"){
 				for(var seriesIndex in option.series){
 
 					var seriesItem = option.series[seriesIndex];
-
 					var dataOut = this.stitchDateSeries(
-						option.xAxis[0].data,
+						xAxisData,
 						seriesItem.data
 					);
-					seriesItem.data = dataOut;
+					option.series[seriesIndex].data = dataOut;
 				}
 			}
 		}
 
+		if (!this.directives.keyExists("tooltip")) {
+			option.tooltip = {
+				trigger: 'axis',
+				axisPointer: {
+					type: 'cross',
+					label: {
+						// background color white, text color black
+					}
+				}
+			}
+		}
+
+		if (
+			this.directives.keyExists("formats")
+			&& this.directives.get("formats") != null
+			&& this.directives.get("formats").length > 0
+			&& Object.hasOwn(option, 'series')
+		) {
+			var mainAxisDimension = "x";
+
+			option.tooltip.axisPointer.label.formatter = `var func = function(params) {
+				try {
+					Date.prototype.isValid = function () {
+						// If the date object is invalid it
+						// will return 'NaN' on getTime()
+						// and NaN is never equal to itself
+						return this.getTime() === this.getTime();
+					};
+
+					var formats = ${JSON.stringify(this.directives.get("formats"))};
+					var mainAxisDimension = '${mainAxisDimension}';
+					var format = 'decimal';
+					if (formats.length > params.axisIndex) {
+						format = formats[params.axisIndex];
+					}
+
+					// If params.value is a date, then use params.value[1] as the value
+					if (Array.isArray(params.value)) {
+						params.value = params.value[1];
+					}
+
+					if (params.axisDimension == mainAxisDimension && params.seriesData != undefined && params.seriesData.length > 0 && 'componentType' in params.seriesData[params.axisIndex] && params.seriesData[params.axisIndex].componentType == 'series') {
+						resultDate = new Date(params.value);
+						if (resultDate.isValid()) {
+							return resultDate.toLocaleDateString();
+						} else {
+							 return params.value;
+						}
+					}
+
+					if (params.value != null && !isNaN(params.value)) {
+						if (format == 'currency') {
+							return \`$\${params.value.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}\`;
+						} else if (format == 'percent') {
+							return \`\${Math.round(params.value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}%\`;
+						} else if (format == 'integer') {
+							return \`\${Math.round(params.value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}\`;
+						} else if (format == 'decimal') {
+							return \`\${params.value.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}\`;
+						} else {
+							return params.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+						}
+					} else {
+						return params.value;
+					}
+				} catch (error) {
+					console.log('Error in tooltip formatter');
+					console.log({error});
+					if (Array.isArray(params.value)) {
+						params.value = params.value[1];
+					}
+					return params.value;
+				}
+			}`;
+
+			var seriesGroupByStack = new Map();
+
+			for (i = 0; i < option.series.length; i++) {
+				var key = i;
+				if ('stack' in option.series[i] 
+					&& 'stack' in option.series[i] 
+					&& option.series[i].stack != false) {
+					key = option.series[i].stack;
+				} else if ('name' in option.series[i]) {
+					key = option.series[i].name;
+				} else {
+					option.series[i].name = key;
+				}
+				if (key in seriesGroupByStack) {
+					seriesGroupByStack.get(key).push(option.series[i]);
+				} else {
+					seriesGroupByStack.set(key, [option.series[i]]);
+				}
+			}
+
+			var i = 0;
+			
+			[...seriesGroupByStack.values()].forEach((series) => {
+				series.forEach((/** @type {{ format: any; }} */ serie) => {
+					serie.format = ChartSQLjs.Chart.matchOrdinalPosition(i, this.directives.get("formats"));
+				});
+				i++;
+				return series;
+			});
+
+			// Reduce the seriesGroupByStack to a single array
+			/** @type {Record<string, any>} */
+			var seriesByNameMap = {};
+			[...seriesGroupByStack.values()].forEach(function (stack) {
+				stack.forEach(function (/** @type {{ name: any; }} */ serie) {
+					seriesByNameMap[ChartSQLjs.Chart.cleanName(serie.name)] = serie;
+				});
+			});
+
+			option.tooltip.formatter = `var func = function(params) {
+				try {
+					var result = '';
+					if (params.length > 0 && params[0].name != undefined && params[0].name != null && params[0].name != '') {
+						result = params[0].name + '<br>';
+					}
+
+					var formats = ${JSON.stringify(this.directives.get("formats"))};
+					var seriesByNameMap = ${JSON.stringify(seriesByNameMap)};
+					var format = 'decimal';
+
+					for (var i = 0; i < params.length; i++) {
+						let format = seriesByNameMap[params[i].seriesName].format;
+
+						// If params.value is a date, then do nothing
+						if (Array.isArray(params[i].value)) {
+							params[i].value = params[i].value[1];
+						}
+
+						if (params[i].axisDimension == 'x' && params[i].seriesData != undefined && params[i].seriesData.length > 0 && 'componentType' in params[i].seriesData[params[i].axisIndex] && params[i].seriesData[params[i].axisIndex].componentType == 'series') {
+							try {
+								return new Date(params[i].value).toLocaleDateString();
+							} catch (e) {
+								return params[i].value;
+							}
+						}
+
+						if (format == 'currency') {
+							result += \`\${params[i].marker} <b>\${params[i].seriesName}</b>: $\${parseInt(params[i].value).toFixed(2).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}<br>\`;
+						} else if (format == 'percent') {
+							result += \`\${params[i].marker} <b>\${params[i].seriesName}</b>: \${params[i].value.toFixed(2).toLocaleString()}%<br>\`;
+						} else if (format == 'integer') {
+							result += \`\${params[i].marker} <b>\${params[i].seriesName}</b>: \${Math.round(params[i].value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}<br>\`;
+						} else if (format == 'decimal') {
+							result += \`\${params[i].marker} <b>\${params[i].seriesName}</b>: \${params[i].value.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}<br>\`;
+						} else {
+							result += \`\${params[i].marker} <b>\${params[i].seriesName}</b>: \${params[i].value.toLocaleString()}<br>\`;
+						}
+					}
+					return result;
+				} catch (error) {
+					console.error('Error in tooltip formatter');
+					console.error({error});
+					var result = params[0].name + '<br>';
+					for (var i = 0; i < params.length; i++) {
+						result += \`\${params[i].marker} <b>\${params[i].seriesName}</b>: \${params[i].value.toLocaleString()}<br>\`;
+					}
+				}
+			}`;
+		}
+
+		if (Object.hasOwn(option, 'series')) {
+			for (i = 0; i < (option.series.length); i++) {
+				if ( Object.hasOwn(option.series[i], 'name') && (typeof option.series[i].name === "string")) {
+					option.series[i].name = ChartSQLjs.Chart.cleanName(option.series[i].name);
+				}
+			}
+		}
+		
 		return option;
 	}
 
@@ -96493,12 +97131,105 @@ ChartSQLjs.Chart = class Chart {
 
 		//Get the option struct for the chart
 		var option = this.getOption();
+		option = this.evaluateOptionFunctions(option);
 
 		//Create the echarts object
 		this.chartInstance = this.#chartsql.echarts.init(target, 'dark');
 		// //Set the option struct
 		this.chartInstance.setOption(option);
 
+	}
+
+	/**
+	 * @param {string} format
+	 */
+	static functionFromFormat(format) {
+		var formatFunction = "function(value) {return Math.round(value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');}";
+		switch(format.trim().toLowerCase()){	
+			case "none":
+				formatFunction = "function(value) {return value.toString();}";
+			break;
+
+			case "currency":
+				formatFunction = "function(value) {return `$${value.toLocaleString()}`;}";
+			break;
+
+			case "percent":
+				formatFunction = "function(value) {return value.toLocaleString() + '%';}";
+			break;
+
+			case "integer":
+				formatFunction = "function(value) {return Math.round(value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');}";
+			break;
+
+			case "decimal":
+				formatFunction = "function(value) {return value.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');}";
+			break;
+		}
+
+		return formatFunction;
+	}
+
+	/**
+	 * Utility method to get the same matching ordinal position item from an array given
+	 * the source array and the item to match on. If the source array is larger than the
+	 * target array, then we will return the last item in the target array. This supports
+	 * the "fall through" of the last item in the target array being used for all remaining
+	 * items in the source array for directives.
+	 * @param {number} pos
+	 * @param {any[]} target
+	 */
+	static matchOrdinalPosition(
+		pos,
+		target
+	){
+		if(pos >= target.length){
+			return target[target.length - 1];
+		} else {
+			return target[pos];
+		}
+	}
+
+	/**
+	 * Goes into every property of the option object even the properties levels below and evaluates 
+	 * if it a string and it has the 'function' word in it. If it does, it will evaluate the function
+	 * and replace the string with the function.
+	 * @param {{ [x: string]: any; }} option
+	 * @returns {{ [x: string]: any; }}
+	 */
+	evaluateOptionFunctions(option) {
+		for (var key in option) {
+			if (typeof option[key] === 'object' && !Array.isArray(option[key])) {
+				this.evaluateOptionFunctions(option[key]);
+				// Check if the object is an array
+			} else if (typeof option[key] === 'object' && Array.isArray(option[key])) {
+				for (var i = 0; i < option[key].length; i++) {
+					if (typeof option[key][i] === 'object') {
+						this.evaluateOptionFunctions(option[key][i]);
+					}
+				}
+			} else if (typeof option[key] === 'string' && option[key].includes('function')) {
+				if (
+					// Work around for legacy code that uses 'var func =' instead of just 'function'
+					option[key].includes('func =')
+				) {
+					eval(`${option[key]}; option[key] = func;`);
+				} else if (option[key].includes('scatterFunc =')) { 
+					eval(`var ${option[key]}; option[key] = scatterFunc;`);
+				} else {
+					eval(`var func = ${option[key]}; option[key] = func;`);
+				}
+			}
+		}
+		return option;
+	}
+
+	/**
+	 * Cleaned name of the series with no underscores
+	 * @param {String} name - Name of the series
+	 */
+	static cleanName(name){
+		return name.replace(/_/g, ' ');
 	}
 
 	/**
@@ -96517,16 +97248,10 @@ ChartSQLjs.Chart = class Chart {
 		 */
 		var dataOut = [];
 
-		for(var ii=1; ii< seriesData.length; ii++){
-			var dateFormat = "yyyy-mm-dd";
+		for(var ii=0; ii< seriesData.length; ii++){
 			//parse the date
 			var rawDate = new Date(categoryData[ii])
-
-			const year = rawDate.getFullYear();
-			const month = String(rawDate.getMonth() + 1).padStart(2, '0');
-			const day = String(rawDate.getDate()).padStart(2, '0');
-
-			var date = `${year}-${month}-${day}`;
+			var date = rawDate.toISOString();
 			dataOut.push([date, seriesData[ii]]);
 
 		}
@@ -96804,6 +97529,10 @@ ChartSQLjs.Data = class Data {
 				// get the value of the matching column
 				var value = row[columnIndex];
 
+				if (value == null) {
+					continue;
+				}
+
 				// we need to detct if the datatype of the value is a string, numeric, date or datetime
 				var datatype = 'string';
 
@@ -97065,6 +97794,317 @@ ChartSQLjs.Data = class Data {
 	}
 
 	/**
+	 * Given the name returns a list of all the unique values for that column.
+	 * 
+	 * We will use a map for efficiency to check if the value exists in the map
+	 * @param {string} name
+	 * @returns {*}
+	 */
+	getUniqueColumnData(name){
+		var columnIndex = this.columns.indexOf(name);
+		var columnData = [];
+		/**
+		 * @type {Record<string, boolean>}
+		 */
+		var uniqueValues = {};
+		for(var i = 0; i < this.rows.length; i++){
+			var value = this.rows[i][columnIndex];
+			if(!uniqueValues[value]){
+				uniqueValues[value] = true;
+				columnData.push(value);
+			}
+		}
+		return columnData;
+	}
+
+	/**
+	 * Given the name returns a list of all the unique values for that column.
+	 * @param {string} name
+	 * @returns { ChartSQLjs.Data }
+	 */
+	selectDistinct(name){
+		return new ChartSQLjs.Data({
+			columns: [name.trim()],
+			rows: this.getUniqueColumnData(name.trim()).map((/** @type {any} */ value) => [value])
+		});
+	}
+
+	/**
+	 * Gets a list of all the values for the column where the where column name matches the where value
+	 * @param {string} columnName
+	 * @param {string} whereColumnName
+	 * @param {string} whereValue
+	 * @returns { any[] }
+	 */
+	getValuesFromColumnWhere(columnName, whereColumnName, whereValue){
+		const columnIndex = this.columns.indexOf(columnName);
+
+		const whereColumnIndex = this.columns.indexOf(whereColumnName);
+		const values = [];
+
+		for (let i = 0; i < this.rows.length; i++) {
+			if (this.rows[i][whereColumnIndex] === whereValue) {
+				values.push(this.rows[i][columnIndex]);
+			}
+		}
+
+		return values;
+	}
+
+	/**
+	 * Group by the data according to the fields and aggregation functions
+	 *  
+	 * Note: First step to create the unique array of keys, then second go back to the 
+	 * original dataset then collect the values into an array where each row matches
+	 * each element of the key, then for each of the element array collected you apply the
+	 * matching function. The last step is to recontruct the final Data object.
+	 * 
+	 * @param { Array<ChartSQLjs.Aggfunc> } aggFields
+	 * @param { Array<ChartSQLjs.Field> } groupByFields
+	 * @returns { ChartSQLjs.Data }
+	 */
+	groupByFields(aggFields, groupByFields){
+		//Create a new array to store the columns
+		/**
+		 * @type {string[]}
+		 */
+		var newColumns = [];
+
+		//Add the group by fields to the newColumns
+		for(var i = 0; i < groupByFields.length; i++){
+			newColumns.push(groupByFields[i].name);
+		}
+
+		var isAggregating = false;
+
+		//Add the aggregation fields to the newColumns
+		for(var i = 0; i < aggFields.length; i++){
+			if (aggFields[i].functionName == null) {
+				newColumns.push(aggFields[i].field.name);
+			} else {
+				// Keep the same column name
+				newColumns.push(aggFields[i].field.name);
+				// columns.push(aggFields[i].functionName + '(' + aggFields[i].field.name + ')');
+				isAggregating = true;
+			}
+		}
+
+		//Create a new object to store the rows
+		/** @type {Record<string, any[]>} */
+		var rowsMap = {};
+		
+		/**
+		 * @type {any[][]}
+		 */
+		var newRows = [];
+
+		//Loop through the rows in the data
+		for(var ii = 0; ii < this.rows.length; ii++){
+
+			//Create a new array to store the row
+			var row = [];
+
+			//Loop through the group by fields
+			for(var jj = 0; jj < groupByFields.length; jj++){
+				var field = groupByFields[jj];
+				var columnIndex = this.columns.indexOf(field.name);
+				row.push(this.rows[ii][columnIndex]);
+			}
+
+			//Create a new object to store the key for the row
+			var key = row.join(',');
+
+			//If the key does not exist in the rows object, create a new array
+			if(!(key in rowsMap)){
+				rowsMap[key] = [];
+			}
+
+			//Loop through the aggregation fields
+			for(var jj = 0; jj < aggFields.length; jj++){
+				var field = aggFields[jj].field;
+				var columnIndex = this.columns.indexOf(field.name);
+				// Check for duplicates
+				if (rowsMap[key].indexOf(this.rows[ii][columnIndex]) == -1) {
+					rowsMap[key].push(this.rows[ii][columnIndex]);
+				}
+			}
+		}
+		
+		if (!isAggregating) {
+			// Create a new array to store the columns
+			/**
+			 * @type {string[]}
+			 */
+			// Loop through the columns
+
+			// for (var i = 0; i < this.columns.length; i++) {
+			// 	// If the column is in the groupByFields, then add it to the newColumns
+			// 	if (groupByFields.map(x => x.name).indexOf(this.columns[i]) != -1) {
+			// 		columns.push(this.columns[i]);
+			// 	}
+
+			// 	// If the column is in the aggFields, then add it to the newColumns
+			// 	if (aggFields.map(x => x.field.name).indexOf(this.columns[i]) != -1) {
+			// 		columns.push(this.columns[i]);
+			// 	}
+			// }
+
+
+			var columnsThatDoesNotExist = [...this.columns].filter(x => newColumns.indexOf(x) == -1);
+			// Clone this.rows with a .map function instead of using a spread operator because we need
+			// entirely new copies of the inner arrays, otherwise it will cause errors when modifying 
+			// newRows because since it will keep a reference to this.rows inner arrays
+			// when we change newRows it will also inadvertently change this.rows too
+			var newRows = this.rows.map(function(arr) {
+				return arr.slice();
+			});
+			for (var i = 0; i < columnsThatDoesNotExist.length; i++) {
+				var columnIndex = this.columns.indexOf(columnsThatDoesNotExist[i]) - i;
+				for (var j = 0; j < newRows.length; j++) {
+					newRows[j].splice(columnIndex);
+				}
+			}
+
+			// Sort newRows by the first groupByFields column value, which can be a string or a number
+			// newRows.sort((a, b) => a[0] - b[0] || a[0].localeCompare(b[0]));
+
+			// Create a new data object
+			var result = new ChartSQLjs.Data({
+				columns: newColumns,
+				rows: newRows
+			});
+			return result;
+		} else {
+			//Loop through the rows object and add the rows to the data object
+			for(var key in rowsMap){
+				// If rowsMap[key] is an array then reduce it according to the function
+				// from aggFunc
+				if (Array.isArray(rowsMap[key])) {
+					/**
+					* @type {any[]}
+					*/
+					let row = [...key.split(',')];
+					for (var i = 0; i < aggFields.length; i++) {
+						if (aggFields[i].functionName == null) {
+							// If no function is provided, then just add the value
+							for (var j = 0; j < rowsMap[key].length; j++) {
+								row.push(rowsMap[key][j]);
+							}
+							continue;
+						// @ts-ignore
+						} else if (aggFields[i].functionName != null && aggFields[i].functionName.toLowerCase() == 'avg') {
+							row.push(rowsMap[key].reduce((acc, val) => acc + val, 0) / rowsMap[key].length);
+							continue;
+						// @ts-ignore
+						} else if (aggFields[i].functionName != null && aggFields[i].functionName.toLowerCase() == 'sum') {
+							row.push(rowsMap[key].reduce((acc, val) => acc + val, 0));
+							continue;
+						// @ts-ignore
+						} else if (aggFields[i].functionName != null && aggFields[i].functionName.toLowerCase() == 'count') {
+							row.push(rowsMap[key].length);
+							continue;
+						// @ts-ignore
+						} else if (aggFields[i].functionName != null && aggFields[i].functionName.toLowerCase() == 'min') {
+							row.push(Math.min(...rowsMap[key]));
+							continue;
+						// @ts-ignore
+						} else if (aggFields[i].functionName != null && aggFields[i].functionName.toLowerCase() == 'max') {
+							row.push(Math.max(...rowsMap[key]));
+							continue;
+						}
+						continue;
+					}
+					newRows.push(row);
+				}
+
+				// if (Array.isArray(rowsMap[key])) {
+				// 	if (aggFields[0].functionName == 'avg') {
+				// 		rows.push([...key.split(','), rowsMap[key].reduce((acc, val) => acc + val, 0) / rowsMap[key].length]);
+				// 		continue;
+				// 	} else if (aggFields[0].functionName == 'sum') {
+				// 		rows.push([...key.split(','), rowsMap[key].reduce((acc, val) => acc + val, 0)]);
+				// 		continue;
+				// 	} else if (aggFields[0].functionName == 'count') {
+				// 		rows.push([...key.split(','), rowsMap[key].length]);
+				// 		continue;
+				// 	} else if (aggFields[0].functionName == 'min') {
+				// 		rows.push([...key.split(','), Math.min(...rowsMap[key])]);
+				// 		continue;
+				// 	} else if (aggFields[0].functionName == 'max') {
+				// 		rows.push([...key.split(','), Math.max(...rowsMap[key])]);
+				// 		continue;
+				// 	}
+				// 	continue;
+				// }
+			}
+			//Create a new data object
+			var data = new ChartSQLjs.Data({
+				columns: newColumns,
+				rows: newRows
+			});
+			return data;
+		}
+
+	}
+
+	/**
+	 * Returns the fields that match the series directive
+	 * @param {string[]} seriesArray
+	 * @returns {Array<ChartSQLjs.Field>}
+	 */
+	getNumericFieldsMatchingSeries(seriesArray){
+		var fields = this.getFields();
+		var numericFields = [];
+		for(var i = 0; i < fields.length; i++){
+			if(fields[i].datatype == 'numeric' && seriesArray.indexOf(fields[i].name.trim()) != -1){
+				numericFields.push(fields[i]);
+			}
+		}
+		return numericFields;
+	}
+
+	/**
+	 * Given the name returns the field object
+	 * @param {string} name
+	 * @returns {ChartSQLjs.Field}
+	 */
+	getFieldByName(name){
+		if (name == null) {
+			throw new Error('Field name cannot be null');
+		}
+
+		var fields = this.getFields();
+		for(var i = 0; i < fields.length; i++){
+			if(fields[i].name == name.trim()){
+				return fields[i];
+			}
+		}
+		throw new Error('Field not found with name: ' + name);
+	}
+
+	/**
+	 * Check if column exists in the data
+	 * @param {string} column
+	 * @returns {boolean}
+	 */
+	columnExists(column){
+		return this.columns.indexOf(column) != -1;
+	}
+	
+	/**
+	 * Given a list of column names returns an array of field objects
+	 * @param {string[]} names
+	 * @returns {ChartSQLjs.Field[]}
+	 */
+	getFieldsByNames(names){
+		var fieldsArray = [];
+		for(var i = 0; i < names.length; i++){
+			fieldsArray.push(this.getFieldByName(names[i]));
+		}
+		return fieldsArray;
+	}
+
+	/**
 	 * Returns the number of rows in the data
 	 * @returns {number}
 	 */
@@ -97124,6 +98164,9 @@ ChartSQLjs.Directives = class Directives {
 		}
 
 		this.directives = directives;
+
+		//Convert the array directives that are present on to arrays
+		
 	}
 
 	/**
@@ -97170,10 +98213,26 @@ ChartSQLjs.Directives = class Directives {
 	}
 
 	/**
+	 * Length of the directives object
+	 */
+	get length(){
+		return Object.keys(this.directives).length;
+	}
+
+	/**
 	 * Get the value of a directive by key
 	 * @param {string} key - The key of the directive to get
 	 */
 	get(key){
+		// If the directive is an array, convert it to an array separated by commas
+		if(this._arrayDirectives.includes(key)){
+			var arrayDirectiveValue = this.directives[key].split(',');
+			// Trim each value
+			arrayDirectiveValue = arrayDirectiveValue.map(function(/** @type {string} */ value){
+				return value.trim();
+			});
+			return arrayDirectiveValue;
+		}
 		return this.directives[key];
 	}
 }
@@ -97189,14 +98248,20 @@ ChartSQLjs.Field = class Field {
 	 * @param {String} datatype - The datatype of the field
 	 * @param {String} name - The name of the field
 	 * @param {ChartSQLjs.Data} data - Reference back to the Data object that the field belongs to
+	 * @param {boolean} isSecondarySeries - Whether the field is a secondary series
+	 * @param {String?} groupField - The field that the data is grouped by
+	 * @param {String?} stack - The stack that the field belongs to
 	 */
 	constructor(
 		datatype,
 		name,
-		data
+		data,
+		isSecondarySeries = false,
+		groupField = null,
+		stack = null
 	) {
 
-		const validDatatypes = ['string', 'numeric', 'date', 'datetime', ];
+		const validDatatypes = ['string', 'numeric', 'date', 'datetime'];
 
 		// Check if the datatype is valid
 		if(validDatatypes.indexOf(datatype) == -1){
@@ -97213,13 +98278,15 @@ ChartSQLjs.Field = class Field {
 			throw new Error('Invalid Data object passed to Field constructor, expected instance of ChartSQL.Data');
 		}
 
-		this.datatype = datatype;
+		this.cleanName = name;
 		this.name = name;
+		this.datatype = datatype;
+		this.type = 'value';
+		this.format = "value";
 		this.#data = data;
-		this.isSecondarySeries = false;
-		this.groupField = null;
-		this.stack = null;
-
+		this.isSecondarySeries = isSecondarySeries;
+		this.groupField = groupField;
+		this.stack = stack;
 	}
 
 	/**
@@ -97262,7 +98329,10 @@ ChartSQLjs.chartoptions.ColumnOption = class ColumnOption {
 		var yAxis = [];
 
 		yAxis.push({
-			type:'value'
+			type:'value',
+			axisLabel: {
+				formatter: ChartSQLjs.Chart.functionFromFormat(this.seriesFields[0].format)
+			},
 		})
 
 		//If any series are isSecondarySeries then we need to add a secondary yAxis
@@ -97270,7 +98340,10 @@ ChartSQLjs.chartoptions.ColumnOption = class ColumnOption {
 			var seriesItem = this.seriesFields[index];
 			if(seriesItem.isSecondarySeries || false){
 				yAxis.push({
-					type:'value'
+					type:'value',
+					axisLabel: {
+						formatter: ChartSQLjs.Chart.functionFromFormat(seriesItem.format)
+					},
 				})
 				break;
 			}
@@ -97394,6 +98467,12 @@ ChartSQLjs.chartoptions.BarOption = class BarOption {
 		 */
 		var option = {
 			legend: {},
+			tooltip: {
+				trigger: 'axis',
+				axisPointer: {
+					type: 'shadow'
+				}
+			},
 			grid: {
 				left: '3%',
 				right: '4%',
@@ -97410,7 +98489,10 @@ ChartSQLjs.chartoptions.BarOption = class BarOption {
 			],
 			xAxis:[
 				{
-					type:'value'
+					type:'value',
+					axisLabel: {
+						formatter: ChartSQLjs.Chart.functionFromFormat(this.seriesFields[0].format)
+					}
 				}
 			],
 			series: series
@@ -97425,7 +98507,7 @@ ChartSQLjs.chartoptions.BarOption = class BarOption {
 ChartSQLjs.chartoptions.LineOption = class LineOption {
 
 	/**
-	 * Creates a Bar chart option struct given the directives, primary category field, and series fields
+	 * Creates a Line chart option struct given the directives, primary category field, and series fields
 	 * @param {ChartSQLjs.Directives} directives
 	 * @param {ChartSQLjs.Field} primaryCategoryField
 	 * @param {Array<ChartSQLjs.Field>} seriesFields
@@ -97453,7 +98535,10 @@ ChartSQLjs.chartoptions.LineOption = class LineOption {
 		var yAxis = [];
 
 		yAxis.push({
-			type:'value'
+			type:'value',
+			axisLabel: {
+				formatter: ChartSQLjs.Chart.functionFromFormat(this.seriesFields[0].format)
+			}
 		})
 
 		//If any series are isSecondarySeries then we need to add a secondary yAxis
@@ -97463,7 +98548,10 @@ ChartSQLjs.chartoptions.LineOption = class LineOption {
 
 			if(seriesItem.isSecondarySeries || false){
 				yAxis.push({
-					type:'value'
+					type:'value',
+					axisLabel: {
+						formatter: ChartSQLjs.Chart.functionFromFormat(seriesItem.format)
+					},
 				})
 				break;
 			}
@@ -97506,6 +98594,116 @@ ChartSQLjs.chartoptions.LineOption = class LineOption {
 			xAxis: [
 				{
 					type: 'category',
+					data: this.primaryCategoryField.columnData
+				}
+			],
+			yAxis:yAxis,
+			series: series
+		};
+
+		if(this.primaryCategoryField.datatype == "date" || this.primaryCategoryField.datatype == "datetime"){
+			option.xAxis[0].type = "time";
+		}
+
+		return option;
+
+	}
+
+}
+/**
+ * Encapsulates the code to generate an option struct for a Column chart
+ */
+ChartSQLjs.chartoptions.AreaOption = class AreaOption {
+
+	/**
+	 * Creates a Line chart option struct given the directives, primary category field, and series fields
+	 * @param {ChartSQLjs.Directives} directives
+	 * @param {ChartSQLjs.Field} primaryCategoryField
+	 * @param {Array<ChartSQLjs.Field>} seriesFields
+	 */
+	constructor(
+		directives,
+		primaryCategoryField,
+		seriesFields
+	) {
+
+		this.directives = ChartSQLjs.Validate.instanceOf('directives', directives, ChartSQLjs.Directives);
+		this.primaryCategoryField = ChartSQLjs.Validate.instanceOf('primaryCategoryField', primaryCategoryField, ChartSQLjs.Field);
+		this.seriesFields = ChartSQLjs.Validate.arrayInstanceOf('seriesFields', seriesFields, ChartSQLjs.Field);
+
+		return this;
+
+	}
+
+	/**
+	 * @return {Record<string, any>}
+	 */
+	get option(){
+
+		var series = [];
+		var yAxis = [];
+
+		yAxis.push({
+			type:'value',
+			axisLabel: {
+				formatter: ChartSQLjs.Chart.functionFromFormat(this.seriesFields[0].format)
+			}
+		})
+
+		//If any series are isSecondarySeries then we need to add a secondary yAxis
+		for(var seriesIndex in this.seriesFields){
+
+			var seriesItem = this.seriesFields[seriesIndex];
+
+			if(seriesItem.isSecondarySeries || false){
+				yAxis.push({
+					type:'value',
+					axisLabel: {
+						formatter: ChartSQLjs.Chart.functionFromFormat(seriesItem.format)
+					}
+				})
+				break;
+			}
+		}
+
+		for(var seriesIndex in this.seriesFields){
+
+			var seriesItem = this.seriesFields[seriesIndex];
+
+			if(this.directives.keyExists("stacks")){
+				for(var stackItem in this.directives.get('stacks')){
+					if(stackItem == seriesItem.groupField)
+					seriesItem.stack = seriesItem.groupField;
+				}
+			}
+
+			if(seriesItem.isSecondarySeries || false){
+				var yAxisIndex = 1;
+			} else {
+				var yAxisIndex = 0;
+			}
+
+			series.push({
+				name: seriesItem.name,
+				type: 'line',
+                areaStyle: {},
+				yAxisIndex: yAxisIndex,
+				data: seriesItem.columnData,
+				stack: seriesItem.stack || false
+			});
+		}
+
+		var option = {
+			legend: {},
+			grid: {
+				left: '3%',
+				right: '4%',
+				bottom: '3%',
+				containLabel: true
+			},
+			xAxis: [
+				{
+					type: 'category',
 					data: this.primaryCategoryField.columnData,
 				}
 			],
@@ -97519,6 +98717,550 @@ ChartSQLjs.chartoptions.LineOption = class LineOption {
 
 		return option;
 
+	}
+
+}
+/**
+ * Encapsulates the code to generate an option struct for a Column chart
+ */
+ChartSQLjs.chartoptions.ScatterOption = class ScatterOption {
+
+	/**
+	 * Creates a Line chart option struct given the directives and series fields
+	 * @param {ChartSQLjs.Directives} directives
+	 * @param {ChartSQLjs.Field} xField
+	 * @param {ChartSQLjs.Field} yField
+	 */
+	constructor(
+		directives,
+		xField,
+		yField
+	) {
+
+		this.directives = ChartSQLjs.Validate.instanceOf('directives', directives, ChartSQLjs.Directives);
+		this.xField = ChartSQLjs.Validate.instanceOf('xField', xField, ChartSQLjs.Field);
+		this.yField = ChartSQLjs.Validate.instanceOf('yField', yField, ChartSQLjs.Field);
+		this.normalizedData = this.xField.columnData.map((value, index) => [value, this.yField.columnData[index]])
+		return this;
+	}
+
+	/**
+	 * @return {Record<string, any>}
+	 */
+	get option(){
+
+		// var hasSize = false;
+
+		// if(this.scatterData.length > 0 && this.scatterData[0].length == 3){
+		// 	hasSize = true;
+		// }
+
+		let option = {
+			xAxis: [{type:'value'}],
+			yAxis: [{type:'value'}],
+			series: [{
+				symbolSize: 10,
+				data: this.normalizedData,
+				type: 'scatter'
+			}]
+		};
+
+		// if(hasSize){
+		// 	option._scatterSize = "scatterFunc = function(data){ return data[2] / 4; }";
+		// }
+		return option;
+
+	}
+
+}
+/**
+ * Encapsulates the code to generate an option struct for a Column chart
+ */
+ChartSQLjs.chartoptions.BubbleOption = class BubbleOption {
+
+	/**
+	 * Creates a Line chart option struct given the directives and series fields
+	 * @param {ChartSQLjs.Directives} directives
+	 * @param {Array<ChartSQLjs.Field>} seriesFields
+	 */
+	constructor(
+		directives,
+		seriesFields
+	) {
+
+		this.directives = ChartSQLjs.Validate.instanceOf('directives', directives, ChartSQLjs.Directives);
+        this.seriesFields = ChartSQLjs.Validate.arrayInstanceOf('seriesFields', seriesFields, ChartSQLjs.Field);
+        this.normalizedData = this.seriesFields[0].columnData.map((/** @type {any} */ value, /** @type {string | number} */ index) => {
+            return this.seriesFields.map((/** @type {{ columnData: { [x: string]: any; }; }} */ field) => field.columnData[index]);
+        });
+		return this;
+	}
+
+	/**
+	 * @return {Record<string, any>}
+	 */
+	get option(){
+
+		var hasSize = false;
+
+		if(this.seriesFields.length > 2){
+			hasSize = true;
+		}
+
+        // Get the minimum and maximum values for the size field
+        let sizeField = this.seriesFields[2];
+        let minSize = Math.min(...sizeField.columnData);
+        let maxSize = Math.max(...sizeField.columnData);
+
+        // Normalize the size field values to be between 10 and 50
+        let normalizedSizeData = sizeField.columnData.map((/** @type {number} */ value) => {
+            return (Math.round(10 + (value - minSize) * 50 / (maxSize - minSize)));
+        });
+
+        this.normalizedData.map((/** @type {any[]} */ value, /** @type {number} */ index) => {
+            value[2] = normalizedSizeData[index];
+            return value;
+        });
+
+		let option = {
+			xAxis: [{type:'value'}],
+			yAxis: [{type:'value', axisLabel: {
+				formatter: ChartSQLjs.Chart.functionFromFormat(this.seriesFields[0].format)
+			}}],
+			series: [{
+				symbolSize: 10,
+				data: this.normalizedData,
+				type: 'scatter'
+			}]
+		};
+
+        // If the size field is present, add it to the option
+        if (hasSize) {
+            // @ts-ignore
+            option._scatterSize = `scatterFunc = function(data){return data[2]; }`;
+
+			// For each series add the symbolSize function
+			option.series.forEach((/** @type {Record<string, any>} */ series) => {
+				// @ts-ignore
+				series.symbolSize = option._scatterSize;
+			});
+        }
+
+		return option;
+	}
+
+}
+/**
+ * Encapsulates the code to generate an option struct for a Heatmap chart
+ */
+ChartSQLjs.chartoptions.HeatmapOption = class HeatmapOption {
+
+	/**
+	 * Creates a Line chart option struct given the directives and series fields
+	 * @param {ChartSQLjs.Directives} directives
+	 * @param {ChartSQLjs.Field} xField
+	 * @param {ChartSQLjs.Field} yField
+	 * @param {ChartSQLjs.Field} valueField
+	 */
+	constructor(
+		directives,
+		xField,
+		yField,
+		valueField
+	) {
+
+		this.directives = ChartSQLjs.Validate.instanceOf('directives', directives, ChartSQLjs.Directives);
+        this.xField = ChartSQLjs.Validate.instanceOf('xField', xField, ChartSQLjs.Field);
+        this.yField = ChartSQLjs.Validate.instanceOf('yField', yField, ChartSQLjs.Field);
+        this.valueField = ChartSQLjs.Validate.instanceOf('valueField', valueField, ChartSQLjs.Field);
+		return this;
+	}
+
+	/**
+	 * @return {Record<string, any>}
+	 */
+	get option(){
+
+		//We need to get the distinct values for x and y
+		var yStruct = {};
+		var xStruct = {};
+		var xData = [];
+		var yData = [];
+
+		for(var ii=0; ii<=this.xField.columnData.length - 1; ii++){
+			xStruct[this.xField.columnData[ii]] = true;
+			yStruct[this.yField.columnData[ii]] = true;
+		}
+
+		for(var key in xStruct){
+			xData.push(key);
+		}
+
+		for(var key in yStruct){
+			yData.push(key);
+		}
+
+
+		var data = [];
+
+		for(var ii=0; ii<=this.xField.columnData.length - 1; ii++){
+			//Map the xField, yField and valueField into the data structure
+			data.push([
+				this.xField.columnData[ii],
+				this.yField.columnData[ii],
+				this.valueField.columnData[ii]
+			]);
+		}
+
+		// Get the maximum value for the value field
+		var maxValue = Math.max(...this.valueField.columnData);
+
+		var option = {
+			tooltip: {
+				position: 'top',
+				trigger: 'axis',
+				axisPointer: {
+					type: 'cross',
+					label: {
+						backgroundColor: '##6a7985'
+					}
+				},
+				formatter: "var func = function(columns) {let html = columns.map((data) => {return `${data.marker} ${data.value[1]}: <b>${data.value[2]}</b>`;}).join('<br>');return `<b>${columns[0].name}</b><br>${html}`;}"
+			},
+			grid: {
+				height: '50%',
+				y: '10%'
+			},
+			xAxis: [{
+				type: 'category',
+				// data: ['X0', 'X1'] // Number of entries should correspond to distinct x indices
+				data: xData,
+			}],
+			yAxis: [{
+				type: 'category',
+				// data: ['Y0', 'Y1'] // Number of entries should correspond to distinct y indices
+				data: yData
+			}],
+			visualMap: {
+				min: 0,
+				// max: 50,
+				max: maxValue,
+				calculable: true,
+				orient: 'horizontal',
+				left: 'center',
+				bottom: '15%'
+			},
+			series: [{
+				name: 'Heatmap',
+				type: 'heatmap',
+				data: data,
+				label: {
+					show: true
+				},
+				emphasis: {
+					itemStyle: {
+						shadowBlur: 10,
+						shadowColor: 'rgba(0, 0, 0, 0.5)'
+					}
+				}
+			}]
+		};
+		return option;
+	}
+
+}
+/**
+ * Encapsulates the code to generate an option struct for a Pie chart
+ */
+ChartSQLjs.chartoptions.PieOption = class PieOption {
+
+	/**
+	 * Creates a Line chart option struct given the directives, primary category field, and series fields
+	 * @param {ChartSQLjs.Directives} directives
+	 * @param {ChartSQLjs.Field} primaryCategoryField
+	 * @param {Array<ChartSQLjs.Field>} categoryData
+	 * @param {Array<ChartSQLjs.Field>} valuesFields
+	 */
+	constructor(
+		directives,
+		primaryCategoryField,
+		categoryData,
+		valuesFields
+	) {
+
+		this.directives = ChartSQLjs.Validate.instanceOf('directives', directives, ChartSQLjs.Directives);
+		this.primaryCategoryField = ChartSQLjs.Validate.instanceOf('primaryCategoryField', primaryCategoryField, ChartSQLjs.Field);
+		this.categoryData = ChartSQLjs.Validate.arrayInstanceOf('categoryData', categoryData, ChartSQLjs.Field);
+		this.valuesFields = ChartSQLjs.Validate.arrayInstanceOf('valuesFields', valuesFields, ChartSQLjs.Field);
+
+		return this;
+
+	}
+
+	/**
+	 * @return {Record<string, any>}
+	 */
+	get option(){
+		var pieData = [];
+
+		if(this.valuesFields.length == 0){
+			throw("Pie charts require at least one numeric column");
+		}
+
+		var valueData = this.valuesFields[0].columnData;
+
+		for(var ii = 0; ii <= this.categoryData[0].columnData.length - 1; ii++){
+			pieData.push({
+				name: this.categoryData[0].columnData[ii],
+				value: valueData[ii]
+			});
+		}
+
+		var option = {
+			grid: {
+				left: '3%',
+				right: '4%',
+				bottom: '3%',
+				containLabel: true
+			},
+			series: [
+			  {
+				type: 'pie',
+				data: pieData,
+				label:{
+					fontSize: 16,  // Set the font size
+					formatter: '{b}: {d}%'  // Set the label to show the name and percentage
+				}
+			  }
+			]
+		};
+		return option;
+	}
+
+}
+/**
+ * Encapsulates the code to generate an option struct for a Gauge chart
+ */
+ChartSQLjs.chartoptions.GaugeOption = class GaugeOption {
+
+	/**
+	 * Creates a Line chart option struct given the directives, primary category field, and series fields
+	 * @param {ChartSQLjs.Directives} directives
+	 * @param {ChartSQLjs.Field} primaryCategoryField
+	 * @param {Array<ChartSQLjs.Field>} categoryData
+	 * @param {Array<ChartSQLjs.Field>} valuesFields
+	 */
+	constructor(
+		directives,
+		primaryCategoryField,
+		categoryData,
+		valuesFields
+	) {
+
+		this.directives = ChartSQLjs.Validate.instanceOf('directives', directives, ChartSQLjs.Directives);
+		this.primaryCategoryField = ChartSQLjs.Validate.instanceOf('primaryCategoryField', primaryCategoryField, ChartSQLjs.Field);
+		this.categoryData = ChartSQLjs.Validate.arrayInstanceOf('categoryData', categoryData, ChartSQLjs.Field);
+		this.valuesFields = ChartSQLjs.Validate.arrayInstanceOf('valuesFields', valuesFields, ChartSQLjs.Field);
+
+		return this;
+
+	}
+
+	/**
+	 * @return {Record<string, any>}
+	 */
+	get option(){
+
+		var gaugeData = [];
+
+		if(this.valuesFields.length == 0){
+			throw("Gauge charts require at least one numeric column");
+		}
+
+		var valueData = this.valuesFields[0].columnData;
+
+		for(var i = 0; i <= this.categoryData.length - 1; i++){
+			gaugeData.push({
+				name: this.cleanName(this.primaryCategoryField.name),
+				value: valueData[i]
+			});
+		}
+
+		var option = {
+			// grid: {
+			// 	// left: '3%',
+			// 	// right: '4%',
+			// 	// bottom: '3%',
+			// 	containLabel: true
+			// },
+			// tooltip: {
+			// 	formatter: "'{a} {b} : {c}%'"
+			// },
+			series: [
+				{
+					type: 'gauge',
+					max: 100,
+					data: gaugeData
+				}
+			]
+		};
+		return option;
+	}
+
+	/**
+	 * @param {string} name
+	 * @return {string}
+	 */
+	cleanName(name){
+		return name.replace(/_/g, ' ');
+	}
+
+}
+/**
+ * Encapsulates the code to generate an option struct for a Combo chart
+ */
+ChartSQLjs.chartoptions.ComboOption = class ComboOption {
+
+	/**
+	 * Creates a Combo chart option struct given the directives, categoryData, and series fields
+	 * @param {ChartSQLjs.Directives} directives
+	 * @param {ChartSQLjs.Field} primaryCategoryField
+	 * @param {Array<ChartSQLjs.Field>} categoryData
+	 * @param {Array<ChartSQLjs.Field>} valuesFields
+	 */
+	constructor(
+		directives,
+		primaryCategoryField,
+		categoryData,
+		valuesFields
+	) {
+
+		this.directives = ChartSQLjs.Validate.instanceOf('directives', directives, ChartSQLjs.Directives);
+		this.primaryCategoryField = ChartSQLjs.Validate.instanceOf('primaryCategoryField', primaryCategoryField, ChartSQLjs.Field);
+		this.categoryData = ChartSQLjs.Validate.arrayInstanceOf('categoryData', categoryData, ChartSQLjs.Field);
+		this.valuesFields = ChartSQLjs.Validate.arrayInstanceOf('valuesFields', valuesFields, ChartSQLjs.Field);
+
+		return this;
+
+	}
+
+	/**
+	 * @return {Record<string, any>}
+	 */
+	get option(){
+
+		var series = [];
+		var yAxis = [];
+
+		yAxis.push({
+			type:'value',
+			data: [],
+			axisLabel: {
+				formatter: ChartSQLjs.Chart.functionFromFormat(this.valuesFields[0].format)
+			},
+			inverse: false
+		})
+
+		//If any series are isSecondarySeries then we need to add a secondary yAxis
+		for(var seriesItem of this.valuesFields){
+			if(seriesItem.isSecondarySeries??false){
+				yAxis.push({
+					type:'value',
+					data: [],
+					axisLabel: {
+						formatter: ChartSQLjs.Chart.functionFromFormat(seriesItem.format)
+					},
+					inverse: false
+				})
+				break;
+			}
+		}
+
+		for(var seriesItem of this.valuesFields){
+			if(!("type" in seriesItem)){
+				throw("Combo charts require a type fosr each series using the @series-types directive");
+			}
+
+			if(seriesItem.type == "column"){
+				//We rewrite column to bar
+				var typeName = "bar";
+				seriesItem.itemStyle = {
+					"normal": {
+					  "opacity": 0.1 // Set the opacity here
+					}
+				}
+			} else {
+				/** @type {string} */ var typeName = seriesItem.type;
+			}
+
+			if(seriesItem.isSecondarySeries??false){
+				var yAxisIndex = 1;
+			} else {
+				var yAxisIndex = 0;
+			}
+
+			var itemOut = {
+				name: seriesItem.name,
+				type: typeName,
+				yAxisIndex: yAxisIndex,
+				lineStyle: {
+					normal: {
+						width: 2
+					}
+				},
+				data: seriesItem.columnData,
+				stack: seriesItem.stack??false
+			}
+
+			// Increase the line style on combo charts as it is a bit too
+			// thin when overlaying on top of columns
+			if(seriesItem.type == "line"){
+				itemOut.lineStyle.normal.width = 3;
+			}
+
+			series.push(itemOut);
+		}
+
+		var option = {
+			legend: {},
+			grid: {
+				left: '3%',
+				right: '4%',
+				bottom: '3%',
+				containLabel: true
+			},
+			xAxis: [
+				{
+					type: 'category',
+					data: this.primaryCategoryField.columnData,
+					inverse: false
+				}
+			],
+			yAxis:yAxis,
+			series: series
+		};
+
+		if(this.valuesFields[0].type == "bar"){
+			//Swap the x and y axis
+			option.xAxis = yAxis;
+			option.yAxis = [
+				{
+					type: 'category',
+					data: this.categoryData.columnData,
+					// 2024-01-23: We set the inverse so that the default sort of bars appears as top to bottom
+					// I think echarts sorts from 0,0 coordinate, but this is unintuitive for bar charts
+					axisLabel: {
+						formatter: "var func = function(value){return value;}"
+					},
+					inverse: true
+				}
+			]
+		}
+
+		if(this.primaryCategoryField.datatype == "date" || this.primaryCategoryField.datatype == "datetime"){
+			option.xAxis[0].type = "time";
+		}
+		return option;
 	}
 
 }
