@@ -2,15 +2,15 @@ describe('ChartSQL', function() {
 
 	describe('constructor', function() {
 		it('should create a new instance of ChartSQL', function() {
-			let chartsql = new ChartSQL.ChartSQL();
-			expect(chartsql).toBeInstanceOf(ChartSQL.ChartSQL);
-			expect(window.chartsql).toBeInstanceOf(ChartSQL.ChartSQL);
+			let chartsql = new ChartSQLjs.ChartSQL();
+			expect(chartsql).toBeInstanceOf(ChartSQLjs.ChartSQL);
+			expect(window.chartsql).toBeInstanceOf(ChartSQLjs.ChartSQL);
 		});
 	});
 
 	describe('createChart', function() {
 		it('should create a new chart', function() {
-			let chartsql = new ChartSQL.ChartSQL();
+			let chartsql = new ChartSQLjs.ChartSQL();
 			// Sample data, typically retrieved from an executed SQL query
 			let data = {
 				columns: ['category', 'total_sales'],
@@ -31,12 +31,12 @@ describe('ChartSQL', function() {
 				}
 			});
 
-			expect(chart).toBeInstanceOf(ChartSQL.Chart);
+			expect(chart).toBeInstanceOf(ChartSQLjs.Chart);
 		});
 
 		describe('Given a ChartSQL.Directives object', function() {
 			it('should pass that directives object', function() {
-				let chartsql = new ChartSQL.ChartSQL();
+				let chartsql = new ChartSQLjs.ChartSQL();
 				// Sample data, typically retrieved from an executed SQL query
 				let data = {
 					columns: ['category', 'total_sales'],
@@ -48,7 +48,7 @@ describe('ChartSQL', function() {
 					]
 				}
 
-				let directives = new ChartSQL.Directives({});
+				let directives = new ChartSQLjs.Directives({});
 
 				// Renders the data using the directives supplied
 				// Returns an instance of the ChartSQL chart object that
@@ -65,7 +65,7 @@ describe('ChartSQL', function() {
 
 		describe('Given a directives string value', function() {
 			it('should parse the directives string value', function() {
-				let chartsql = new ChartSQL.ChartSQL();
+				let chartsql = new ChartSQLjs.ChartSQL();
 				// Sample data, typically retrieved from an executed SQL query
 				let data = {
 					columns: ['category', 'total_sales'],
@@ -90,7 +90,7 @@ describe('ChartSQL', function() {
 					directives: directives
 				});
 
-				expect(chart.directives).toBeInstanceOf(ChartSQL.Directives);
+				expect(chart.directives).toBeInstanceOf(ChartSQLjs.Directives);
 
 			});
 		});
@@ -98,7 +98,7 @@ describe('ChartSQL', function() {
 		describe('option target', function() {
 			it('should build the chart into the target', function() {
 
-				let chartsql = new ChartSQL.ChartSQL();
+				let chartsql = new ChartSQLjs.ChartSQL();
 				// Sample data, typically retrieved from an executed SQL query
 				let data = {
 					columns: ['category', 'total_sales'],
